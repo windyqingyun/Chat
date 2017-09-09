@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <h1>登录</h1>
+    <form id = 'loginForm' method="post">
+
+    {{ form.hidden_tag() }}
+    {{ form.name.label }}:{{ form.name() }} {% for error in form.name.errors %} {% endfor %} <br>
+    {{ form.password.label }}:{{ form.password() }} {% for error in form.password.errors %}{% endfor %} <br>
+    {{ form.role.label }}:{{ form.role() }} {% for error in form.role.errors %}{% endfor %} <br>
+
+    {{ form.submit() }}
+
+    </form>
+
+
+</body>
+</html>

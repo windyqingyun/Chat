@@ -1,0 +1,114 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
+   <SCRIPT language=JavaScript>
+        var new_width=800; //你要固定的浏览器宽度
+        var new_height=800; //你要固定的浏览器高度
+        function resizewindow()
+        {
+          window.resizeTo(new_width,new_height);
+        }
+         resizewindow();
+
+        //查看是否有回复
+        setInterval(function () {
+            $.ajax({
+                url : '/getReply',
+                data:{'id':'{{ kf.id }}' },
+                cache : false,
+                async : true,
+                type : "POST",
+                success : function (result){
+                    if(result.message != '') {
+                        chatRecord = result.message
+                        $('.msgContent').append('<h3>'+chatRecord.fromName +':' + chatRecord.content + '</h3>')
+                        $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                    }
+
+                    if(result.users != null){
+                        $('#select option').remove()
+
+                        for(var i = 0 ; i<result.users.length;i++){
+                            user = result.users[i]
+                            $('#select').append("<option value='"+user.id+"'>"+user.name+"</option>")
+
+                        }
+                    }
+
+                }
+            });
+        },2000);
+
+            document.getElementById('inputContent').addEventListener('keydown', function (e){
+    // Do your key combination detection
+           if(e.keyCode == 13 && e.ctrlKey){
+                $('#inputContent').value += "\n";
+            }else if(e.keyCode == 13){
+                // 避免回车键换行
+                e.preventDefault();
+                // 下面写你的发送消息的代码
+                send()
+            }
+        }, false);
+
+        function send() {
+            content = $('#inputContent').val()
+            toId = $('#select').val()
+
+            if (content == ''){
+                alert('请输入内容')
+            }
+            else if (toId == '') {
+                alert('请选择聊天对象')
+            } else{
+                $('.msgContent').append('<h3>'+'{{ kf.name }}'+':'+content+'</h3>')
+
+                toName = $('#select').find("option:selected").text()
+
+                data = {'content':content,'fromId':'{{ kf.id }}','fromName':'{{ kf.name }}','toId': toId,'toName':toName }
+
+                $.ajax({
+                url : '/sendMsg',
+                data: data,
+                cache : false,
+                async : true,
+                type : "POST",
+                success : function (result){
+                    $('#inputContent').val('')
+                    $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                }
+            });
+            }
+        }
+
+    </SCRIPT>
+    <div class="container">
+
+        <div class="row" style="border: 1px solid #ccc;">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ kf.name }}聊天中...</div>
+                <div class="panel-body" style="padding:15px 15px 0px 15px">
+                    <div class="msgContent" style="border: 1px solid #ccc;width: auto;height: 500px;overflow-y:scroll;">
+
+                    </div>
+
+                    <div class="form-inline" style="border: 1px solid #ccc">
+                        <textarea  rows="5" id="inputContent" style="width: 100%;resize: none;border: 1px solid #ccc">
+
+                        </textarea>
+                    </div>
+                </div>
+                    <button type="button" class="btn btn-primary" onclick="send()" style="margin-right: 15px;float: right" >发送</button>
+                    <select id="select"> </select>
+                    <label id = 'content'></label>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

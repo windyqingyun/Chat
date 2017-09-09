@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block js %}
+    <script>
+        function consult() {
+            window.open('/consult','title',width=400,height=400)
+        }
+
+    </script>
+
+{% endblock %}
+{% block content %}
+
+<button type="button" class="btn btn-default" onclick="consult()" > 咨询</button>
+
+{% endblock %}
