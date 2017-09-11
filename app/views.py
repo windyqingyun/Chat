@@ -11,6 +11,10 @@ chatRecords =[]
 onlineUsers = {}
 onlineKfs = {}
 
+@app.route('/index')
+def go():
+    return render_template('talk.html')
+
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -31,7 +35,8 @@ def index():
             user = User(id,name)
             onlineUsers[id] = user
             kf = getFreeKf()
-            kf.addUser(user)
+            if kf :
+                kf.addUser(user)
             return  render_template('chat.html' ,user = user ,kf = kf)
 
 

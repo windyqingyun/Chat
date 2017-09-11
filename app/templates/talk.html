@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block page_content %}
+
+
+  <div class="row">
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">用户列表</div>
+
+              <ul class="chat-user-list">
+
+                <li class="chat-user active">
+                  <a href="#">
+                    <i class="fa fa-circle-o"></i> <span>張三</span>
+                  </a>
+                </li>
+
+                <li class="chat-user">
+                  <a href="#">
+                    <i class="fa fa-circle-o "></i> <span>李四</span>
+                  </a>
+                </li>
+
+
+              </ul>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-9">
+
+        <div class="row" style="border: 1px solid #ccc;">
+            <div class="panel panel-default">
+                <div class="panel-heading">聊天中...</div>
+                <div class="panel-body" style="padding:15px 15px 0px 15px">
+                    <div class="msgContent" style="border: 1px solid #ccc;width: auto;height: 600px;overflow-y:scroll;">
+
+                    </div>
+                    <div class="tools" style="padding: 20px;">
+                    </div>
+                    <div class="form-inline" style="border: 1px solid #ccc">
+                        <textarea  rows="5" id="inputContent" style="width: 100%;resize: none;border-style: none">
+
+                        </textarea>
+                    </div>
+                </div>
+                    <button type="button" class="btn btn-primary" onclick="send()" style="margin:15px;float: right" >发送</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+  </div>
+
+
+
+{% endblock %}

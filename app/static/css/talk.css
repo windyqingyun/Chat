@@ -1,0 +1,22 @@
+.chat-user-list {
+      list-style: none;
+      margin-top: 20px;
+      padding: 0;
+      height: 800px;
+
+}
+
+.chat-user-list li{
+    position: relative;
+    margin: 2px;
+    padding: 10px;
+    background-color: #eee8d5;
+}
+
+.chat-user-list li:hover {
+    background-color: #ccc;
+}
+
+.chat-user .active {
+    background-color: cadetblue;
+}

@@ -11,6 +11,10 @@
         }
          resizewindow();
 
+        $(window).on("beforeunload", function() {
+            return alert("Do you really want to close?");
+        });
+
         //查看是否有回复
         setInterval(function () {
             $.ajax({
