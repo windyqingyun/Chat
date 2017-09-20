@@ -2,7 +2,7 @@
       list-style: none;
       margin-top: 20px;
       padding: 0;
-      height: 800px;
+      height: 480px;
 
 }
 
@@ -10,13 +10,13 @@
     position: relative;
     margin: 2px;
     padding: 10px;
-    background-color: #eee8d5;
+    background-color: #FFEFDB;
 }
 
 .chat-user-list li:hover {
     background-color: #ccc;
 }
 
-.chat-user .active {
-    background-color: cadetblue;
+.chat-user-list li.active {
+    background-color: #E0EEFF;
 }

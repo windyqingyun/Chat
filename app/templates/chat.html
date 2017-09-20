@@ -22,7 +22,7 @@
                 success : function (result){
                    if(result.message != '') {
                         chatRecord = result.message
-                        $('.msgContent').append('<h3>'+chatRecord.fromName +':' + chatRecord.content + '</h3>')
+                        $('.msgContent').append('<h3>'+chatRecord.kfName +':' + chatRecord.content + '</h3>')
                         $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
                     }
 
@@ -56,7 +56,7 @@
 
                 $.ajax({
                 url : '/sendMsg',
-                data:{'content':content,'fromId':'{{ user.id }}','fromName':'{{ user.name }}','toId':'{{ kf.id }}','toName':'{{ kf.name }}' },
+                data:{'content':content,'userId':'{{ user.id }}','userName':'{{ user.name }}','kfId':'{{ kf.id }}','kfName':'{{ kf.name }}','fromFlag':'u' },
                 cache : false,
                 async : true,
                 type : "POST",

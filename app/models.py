@@ -1,16 +1,33 @@
 from .tools import get_dict
+import  pymongo
+from bson import ObjectId
+
+conn = pymongo.Connection('localhost', 27017)
+
+db = conn.chat
 
 class User():
+    user = db.user
     def __init__(self,id,name):
         self.id = id
         self.name = name
+
+
+    def save(self):
+       return self.user.insert(get_dict(self))
+
+    def find(cls,id):
+        return cls.user.find_one({"_id":ObjectId(id)})
+
 
 
 class Kf():
 
+    kf = db.kf
+
     def __init__(self,id,name):
-        self.id = id
         self.name = name
+        self.id = id
         self.status = True
         self.users = []
 
@@ -19,6 +36,7 @@ class Kf():
             self.status = False
         else:
             self.status = True
+
 
 
     def isOnline(self):
@@ -38,12 +56,13 @@ class Kf():
         return users
 
 class ChatRecord():
-    def __init__(self,fromId,fromName,toId,toName,content,date):
+    def __init__(self,kfId,kfName,userId,userName,fromFlag,content,date):
 
-        self.fromId = fromId
-        self.fromName = fromName
-        self.toId = toId
-        self.toName = toName
+        self.kfId = kfId
+        self.kfName = kfName
+        self.userId = userId
+        self.userName = userName
+        self.fromFlag = fromFlag
         self.content = content
         self.date = date
         self.isRead = False

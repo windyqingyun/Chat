@@ -1,8 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
+    <div class="row">
+        <div style="height: 300px;border: 1px solid #ccc">
 
-
+        </div>
+    </div>
   <div class="row">
 
     <div class="col-md-3">
@@ -12,18 +15,11 @@
 
               <ul class="chat-user-list">
 
-                <li class="chat-user active">
+                <li class="active">
                   <a href="#">
-                    <i class="fa fa-circle-o"></i> <span>張三</span>
+                     <span>暂无任何用户</span>
                   </a>
                 </li>
-
-                <li class="chat-user">
-                  <a href="#">
-                    <i class="fa fa-circle-o "></i> <span>李四</span>
-                  </a>
-                </li>
-
 
               </ul>
         </div>
@@ -37,7 +33,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">聊天中...</div>
                 <div class="panel-body" style="padding:15px 15px 0px 15px">
-                    <div class="msgContent" style="border: 1px solid #ccc;width: auto;height: 600px;overflow-y:scroll;">
+                    <div class="msgContent" style="border: 1px solid #ccc;width: auto;height: 280px;overflow-y:scroll;">
 
                     </div>
                     <div class="tools" style="padding: 20px;">
@@ -48,7 +44,7 @@
                         </textarea>
                     </div>
                 </div>
-                    <button type="button" class="btn btn-primary" onclick="send()" style="margin:15px;float: right" >发送</button>
+                    <button type="button" class="btn btn-primary" onclick="send({{ kf.id }},{{ kf.name }})" style="margin:15px;float: right" >发送</button>
             </div>
 
 
@@ -60,5 +56,10 @@
   </div>
 
 
+<script>
+    //开启获取回复任务
+    startGetReplyTask({{ kf.id }})
+
+</script>
 
 {% endblock %}

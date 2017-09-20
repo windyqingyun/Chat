@@ -24,9 +24,12 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+    {% block css %}{% endblock %}
+    <!-- ./wrapper -->
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -95,7 +98,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{ url_for('static',filename='adminLTE/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ session['currentUser'].name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -151,11 +154,15 @@
         <li class="header">菜单</li>
 
         <li class="active">
-          <a href="#">
+          <a href="talk">
             <i class="fa fa-comments"></i> <span>当前会话</span>
           </a>
         </li>
-
+        <li>
+          <a href="kf">
+            <i class="fa fa-comments"></i> <span>客服管理</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
@@ -184,24 +191,25 @@
 
   </div>
   <!-- /.content-wrapper -->
-
-
-
 </div>
-<!-- ./wrapper -->
 
+{% block js %}
 <!-- jQuery 3 -->
-<script src="{{ url_for('static',filename='js/talk.js') }}"></script>
 <script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 {#<script src="bower_components/fastclick/lib/fastclick.js"></script>#}
+<script src="{{ url_for('static',filename='js/talk.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ url_for('static',filename='adminLTE/js/adminlte.min.js') }}"></script>
 
 <script src="{{ url_for('static',filename='adminLTE/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url_for('static',filename='adminLTE/js/demo.js') }}"></script>
+
+
+{% endblock %}
+
 </body>
 </html>
