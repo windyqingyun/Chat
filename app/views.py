@@ -43,6 +43,7 @@ def index():
         kf = getFreeKf()
 
         if kf :
+
             kf.addUser(user)
         return  render_template('chat.html' ,user = user ,kf = kf)
 
@@ -93,7 +94,9 @@ def getReply():
     role = session.get('role')
 
     if role :
+        print id
         kf = onlineKfs.get(id,None)
+        print kf
         if kf and kf.userLen() > 0:
             users = kf.getUsers()
             return jsonify({'message': returnChat,'users':users })
@@ -111,7 +114,6 @@ def getNewRecord(userId):
     returnRecord = None
     #获取最新信息
     for chat in chatRecords:
-
         if chat.isRead: continue
         if session['role']:
             if chat.kfId == userId and chat.fromFlag == 'u':

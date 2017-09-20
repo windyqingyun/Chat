@@ -193,23 +193,21 @@
   <!-- /.content-wrapper -->
 </div>
 
-{% block js %}
 <!-- jQuery 3 -->
 <script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 {#<script src="bower_components/fastclick/lib/fastclick.js"></script>#}
-<script src="{{ url_for('static',filename='js/talk.js') }}"></script>
+
+
+
 <!-- AdminLTE App -->
 <script src="{{ url_for('static',filename='adminLTE/js/adminlte.min.js') }}"></script>
 
 <script src="{{ url_for('static',filename='adminLTE/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url_for('static',filename='adminLTE/js/demo.js') }}"></script>
-
-
-{% endblock %}
 
 </body>
 </html>
