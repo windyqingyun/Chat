@@ -2,13 +2,28 @@
 
 {% block page_content %}
 <div class="talkContent">
-    <div class="row" style="border: 1px solid #ccc;height: 25%;">
-        <div >
-
+    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;">
+        <div  style="overflow-y: auto;height: 100%">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>访客姓名</th>
+                        <th>IP</th>
+                        <th>访问次数</th>
+                        <th>访问时间</th>
+                        <th>下单次数</th>
+                        <th>上次接待</th>
+                        <th>当前接待</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="row" style="height: 75%;">
-        <div class="talk-left" style="float:left;width: 20%;height:100%;border: 1px solid #ccc">
+        <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc">
             <ul id="leftTab" class="nav nav-tabs">
                 <li class="active"><a href="#talkList" data-toggle="tab">对话列表</a></li>
                 <li><a href="#kfList" data-toggle="tab">客服</a></li>
@@ -36,29 +51,29 @@
 
         <div class="talk-content" style="float:left;width: 50%;height:100%;border: 1px solid #ccc">
 
-                    <div  style="height: 6%;">聊天中...</div>
-                    <div  style="height: 94%;">
-                        <div class="showContent" style="height: 75%;overflow-y:auto;border: 1px solid #ccc">
+            <div  style="height: 6%;text-align:center;padding-top: 10px;">张三</div>
+            <div  style="height: 94%;">
+                <div class="showContent" style="height: 75%;min-height:150px;overflow-y:auto;border: 1px solid #ccc">
 
-                        </div>
-                        <div class="tools" style="height: 5%;border: 1px solid #ccc">
-                        </div>
-                        <div class="writeContent" style="height: 20%;border: 1px solid #ccc">
-                            <textarea  rows="5" id="inputContent" style="width: 100%;resize: none;border-style: none">
-                            </textarea>
-                        </div>
-                    </div>
+                </div>
+                <div class="tools" style="height: 5%;border: 1px solid #ccc">
+                </div>
+                <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">
+                    <textarea  rows="5" placeholder="按Ctrl+Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none">
+                    </textarea>
+                </div>
+            </div>
 
         </div>
 
-        <div class="talk-right" style="float:left;width: 29%;height:100%;border: 1px solid #ccc">
+        <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc">
              <ul id="rightTab" class="nav nav-tabs">
-                <li class="active"><a href="#common" data-toggle="tab">常用信息</a></li>
+                <li class="active"><a href="#common" data-toggle="tab">常用语</a></li>
                 <li><a href="#record" data-toggle="tab">聊天记录</a></li>
             </ul>
             <div id="rightTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="common">
-                    <p>常用信息</p>
+                    <div id="tree"></div>
                 </div>
                 <div class="tab-pane fade" id="record">
                     <p>聊天记录</p>
@@ -68,22 +83,91 @@
 
     </div>
 </div>
-<script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',filename='js/talk.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.js') }}"></script>
+<script rel="stylesheet" href="{{ url_for('static',filename='plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 
 <script>
-     bodyHeight = $(document.body).height()
-   $('.talkContent').css('height',bodyHeight-50)
+    //获取窗口高度 并设置内容界面高度
+    bodyHeight = $(document.body).height()
+    $('.talkContent').css('height',bodyHeight-50)
 
+    //内容输入初始化
+    $('#inputContent').val('')
+
+    //左标签页
     $('#leftTab a').click(function (e) {
-     e.preventDefault()
-      $(this).tab('show')
+        e.preventDefault()
+        $(this).tab('show')
     });
+    //右标签页
     $('#rightTab a').click(function (e) {
-      e.preventDefault()
-      $(this).tab('show')
+         e.preventDefault()
+         $(this).tab('show')
     });
+
+    //开启回复轮询
     //  startGetReplyTask('{{ kf.id }}')
+
+     //获取常用语树内容
+     function getTree() {
+         var treeContent ;
+         //同步加载
+         $.ajax({
+            url : '{{ url_for('static',filename='js/tree.json') }}',
+            type : "GET",
+            async: false,
+            dataType:'json',
+            success : function (result){
+                treeContent = result.tree;
+            }
+          });
+         return treeContent;
+    }
+
+    $('#tree').treeview({data: getTree()});
+    $('#tree').on('nodeSelected', function(event, node) {
+        if(node.value != undefined){
+            $('#inputContent').val(node.value);
+            $('#inputContent').focus()
+        }
+    });
+
+     //获取最新访客消息
+     $.ajax({
+            url : '{{ url_for('static',filename='js/msg.json') }}',
+            type : "GET",
+            dataType:'json',
+            success : function (result){
+                  $.each( result.msg, function(index, o)
+                  {
+                      _html = '<tr>                               \
+                                    <td>'+o.name+'</td>           \
+                                    <td>'+o.ip+'</td>             \
+                                    <td>'+o.accessCount+'</td>    \
+                                    <td>'+o.accessTime+'</td>     \
+                                    <td>'+o.orderCount+'</td>     \
+                                    <td>'+o.lastAccept+'</td>     \
+                                    <td>'+o.currentAccept+'</td>  \
+                                    <td>正在通话</td>               \
+                                 </tr>'
+                    $('tbody').append(_html)
+                  });
+
+            }
+     });
+
+    $('#inputContent').bind('keyup', function(event) {
+        if (event.ctrlKey && event.keyCode == 13) {
+            content = $('#inputContent').val()+'\n'
+            $('#inputContent').val(content)
+        }else if (event.keyCode == 13){
+            send('{{ kf.id }}','{{ kf.name }}')
+        }
+    });
+
 
 </script>
 

@@ -1,0 +1,58 @@
+{
+    "msg": [
+        {
+            "name": "张三",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        },
+        {
+            "name": "李四",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        },
+        {
+            "name": "王五",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        },
+        {
+            "name": "赵六",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        },
+        {
+            "name": "孙七",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        },
+        {
+            "name": "林八",
+            "ip": "127.0.0.1",
+            "accessCount": "10",
+            "accessTime": "00: 30: 30",
+            "orderCount": "10",
+            "lastAccept": "客服一",
+            "currentAccept": "客服二"
+        }
+    ]
+}

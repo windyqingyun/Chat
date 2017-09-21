@@ -1,0 +1,48 @@
+{
+    "tree": [
+        {
+            "text": "我的常用语",
+            "nodes": [
+                {
+                    "text": "默认分组",
+                    "nodes": [
+                        {
+                            "text": "你好啊",
+                            "value": "你好啊，欢迎咨询"
+                        },
+                        {
+                            "text": "搞笑",
+                            "value": "你是来搞笑的吧？"
+                        }
+                    ]
+                },
+                {
+                    "text": "自定义1",
+                    "nodes": [
+                        {
+                            "text": "say hi",
+                            "value": "hi , welcome"
+                        },
+                        {
+                            "text": "wtf",
+                            "value": "What The Fuck!"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "公共常用语",
+            "nodes": [
+                {
+                    "text": "欢迎",
+                    "value": "欢迎来到药材网，有什么能够帮到您吗？"
+                },
+                {
+                    "text": "谢谢",
+                    "value": "谢谢您的鼓励，我们会继续努力！"
+                }
+            ]
+        }
+    ]
+}

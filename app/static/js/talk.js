@@ -15,8 +15,8 @@ function  startGetReplyTask(kfId) {
                 if(result.message != '') {
                     chatRecord = result.message
                     if( currentActive ==  chatRecord.userId ){
-                        $('.msgContent').append('left:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>')
-                        $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                        $('.showContent').append('left:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>')
+                        $('.showContent').scrollTop( $('.msgContent')[0].scrollHeight);
                     }
 
                 }
@@ -46,7 +46,7 @@ function  startGetReplyTask(kfId) {
 
                         $(this).addClass("active").siblings().removeClass("active");
                         $('#inputContent').val('')
-                        $('.msgContent').empty()
+                        $('.showContent').empty()
                         currentActive = $('.chat-user-list li.active').attr('id');
 
                          $.ajax({
@@ -66,8 +66,8 @@ function  startGetReplyTask(kfId) {
                                         _html += 'k:<h3>'+chatRecord.kfName +':' + chatRecord.content + '</h3>'
                                     }
                                 }
-                                $('.msgContent').append(_html)
-                                $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                                $('.showContent').append(_html)
+                                $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
 
                             }
                         });
@@ -85,15 +85,15 @@ function  startGetReplyTask(kfId) {
 
 function send(kfId,kfName) {
     content = $('#inputContent').val()
-    userId = $('.chat-user-list li.active').attr('id')
-
+    // userId = $('.chat-user-list li.active').attr('id')
+    userId = 's'
     if (content == ''){
         alert('请输入内容')
     }
-    else if (userId == '') {
+    else if (userId == undefined) {
         alert('请选择聊天对象')
     } else{
-        $('.msgContent').append('<h3>'+kfName+':'+content+'</h3>')
+        $('.showContent').append('<h3>'+kfName+':'+content+'</h3>')
 
         userName = $('.chat-user-list li.active a span').text()
 
@@ -107,7 +107,7 @@ function send(kfId,kfName) {
             type : "POST",
             success : function (result){
                 $('#inputContent').val('')
-                $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
             }
         });
     }

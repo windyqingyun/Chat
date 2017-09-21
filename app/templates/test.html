@@ -1,15 +1,27 @@
-{% extends "base.html" %}
-{% block js %}
-    <script>
-        function consult() {
-            window.open('/consult','title',width=400,height=400)
-        }
+{% extends "layout.html" %}
 
-    </script>
+{% block page_content %}
+<div class="box">
+{#           <textarea id="editor1" name="editor1" rows="10" cols="80">#}
+{#                                    This is my textarea to be replaced with CKEditor.#}
+{#            </textarea>#}
+            <textarea class="textarea" placeholder="Place some text here"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
 
-{% endblock %}
-{% block content %}
+            </textarea>
 
-<button type="button" class="btn btn-default" onclick="consult()" > 咨询</button>
-
+</div>
+<script src="{{ url_for('static',filename='jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+<script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    //CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 {% endblock %}

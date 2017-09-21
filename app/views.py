@@ -25,8 +25,7 @@ def go():
 @app.route('/kf')
 def toKf():
     # getAllKf()
-    return render_template('kf.html')
-
+    return render_template('test.html')
 
 @app.route('/',methods=['GET','POST'])
 def index():
