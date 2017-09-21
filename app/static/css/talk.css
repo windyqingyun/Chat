@@ -37,3 +37,13 @@ table thead th{ background: #e2e3e3;}
 .chat-user-list li.active {
     background-color: #E0EEFF;
 }
+
+.leftSide{
+     list-style: none;
+    float: left;
+}
+
+.rightSide{
+     list-style: none;
+    float: right;
+}

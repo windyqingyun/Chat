@@ -54,19 +54,57 @@
             <div  style="height: 6%;text-align:center;padding-top: 10px;">张三</div>
             <div  style="height: 94%;">
                 <div class="showContent" style="height: 75%;min-height:150px;overflow-y:auto;border: 1px solid #ccc">
-
+                    <ul style="padding: 0px;">
+                        <li class="leftSide">
+                            <div style="float: left;width: 40%;border: 1px solid #cccccc;">
+                                <div class="leftName" style="float: left;padding: 5px 10px;font-size: 10pt;">张三</div>
+                                <div class="leftContent" style="float: left;width: 100%;display:block;word-break: break-all;word-wrap: break-word;">
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                </div>
+                            </div>
+                        </li>
+                        <li class="rightSide">
+                            <div style="float: right;width: 40%;border: 1px solid #cccccc;">
+                                <div class="leftName" style="float: right;padding: 5px 10px;font-size: 10pt;">张三</div>
+                                <div class="leftContent" style="float: right;width: 100%;display:block;word-break: break-all;word-wrap: break-word;">
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                </div>
+                            </div>
+                        </li>
+                          <li class="leftSide">
+                            <div style="float: left;width: 40%;border: 1px solid #cccccc;">
+                                <div class="leftName" style="float: left;padding: 5px 10px;font-size: 10pt;">张三</div>
+                                <div class="leftContent" style="float: left;width: 100%;display:block;word-break: break-all;word-wrap: break-word;">
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                </div>
+                            </div>
+                        </li>
+                        <li class="rightSide">
+                            <div style="float: right;width: 40%;border: 1px solid #cccccc;">
+                                <div class="leftName" style="float: right;padding: 5px 10px;font-size: 10pt;">张三</div>
+                                <div class="leftContent" style="float: right;width: 100%;display:block;word-break: break-all;word-wrap: break-word;">
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="tools" style="height: 5%;border: 1px solid #ccc">
                 </div>
                 <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">
                     <textarea  rows="5" placeholder="按Ctrl+Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none">
+
                     </textarea>
                 </div>
             </div>
 
         </div>
 
-        <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc">
+        <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
              <ul id="rightTab" class="nav nav-tabs">
                 <li class="active"><a href="#common" data-toggle="tab">常用语</a></li>
                 <li><a href="#record" data-toggle="tab">聊天记录</a></li>
@@ -87,7 +125,6 @@
 <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',filename='js/talk.js') }}"></script>
 <script src="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.js') }}"></script>
-<script rel="stylesheet" href="{{ url_for('static',filename='plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 
 <script>
     //获取窗口高度 并设置内容界面高度

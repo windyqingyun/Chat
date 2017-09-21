@@ -84,7 +84,9 @@ function  startGetReplyTask(kfId) {
 
 
 function send(kfId,kfName) {
-    content = $('#inputContent').val()
+    var content = $('#inputContent').val()
+    //正则替换
+    content = content.replace(/\n/g,'<br/>')
     // userId = $('.chat-user-list li.active').attr('id')
     userId = 's'
     if (content == ''){
