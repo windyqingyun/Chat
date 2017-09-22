@@ -1,27 +1,34 @@
 {% extends "layout.html" %}
 
 {% block page_content %}
+
 <div class="box">
-{#           <textarea id="editor1" name="editor1" rows="10" cols="80">#}
-{#                                    This is my textarea to be replaced with CKEditor.#}
-{#            </textarea>#}
-            <textarea class="textarea" placeholder="Place some text here"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-
-            </textarea>
-
+                              <nav class="navbar navbar-default" role="navigation" style="padding-top: 200px">
+                                <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="#">菜鸟教程</a>
+                                </div>
+                                <div>
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">iOS</a></li>
+                                        <li><a href="#">SVN</a></li>
+                                        <li class="dropup">
+                                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                                    <i class="fa fa-plus"></i>添加<b class="caret"></b>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                     <li><a href="##">常用语组</a></li>
+                                                     <li><a href="##">常用语</a></li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </nav>
 </div>
-<script src="{{ url_for('static',filename='jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static',filename='plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
-<script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
+
+
 <script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    //CKEDITOR.replace('editor1')
-    //bootstrap WYSIHTML5 - text editor
-    $('.textarea').wysihtml5()
-  })
+
 </script>
 {% endblock %}
