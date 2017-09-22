@@ -30,7 +30,9 @@ def toKf():
 
 @app.route('/',methods=['GET','POST'])
 def index():
+    print '--------------a'
     form = LoginForm()
+
     if form.validate_on_submit():
         name = form.name.data
         id = get_uuid()
@@ -91,9 +93,11 @@ def getReply():
         returnChat = get_dict(chatRecord)
 
     role = session.get('role')
-
+    print  id
     if role :
+        print onlineKfs
         kf = onlineKfs.get(id,None)
+        print kf
         if kf and kf.userLen() > 0:
             users = kf.getUsers()
             return jsonify({'message': returnChat,'users':users })

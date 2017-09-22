@@ -44,7 +44,7 @@
                         </textarea>
                     </div>
                 </div>
-                    <button type="button" class="btn btn-primary" onclick="send({{ kf.id }},{{ kf.name }})" style="margin:15px;float: right" >发送</button>
+                    <button type="button" class="btn btn-primary" onclick="send('{{ kf.id }}','{{ kf.name }}')" style="margin:15px;float: right" >发送</button>
             </div>
 
 
@@ -55,10 +55,12 @@
 
   </div>
 
-
+<script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/talk.js') }}"></script>
 <script>
+
     //开启获取回复任务
-    startGetReplyTask({{ kf.id }})
+    startGetReplyTask('{{ kf.id }}')
 
 </script>
 

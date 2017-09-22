@@ -3,7 +3,6 @@ from wtforms import StringField,PasswordField,SubmitField,BooleanField
 from wtforms.validators import required
 
 class LoginForm(FlaskForm):
-
     name = StringField('username',validators=[required()])
     role = BooleanField('kf')
 

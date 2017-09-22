@@ -8,7 +8,7 @@ from app import createApp
 
 app = createApp()
 manager = Manager(app)
-
+app.debug = True
 
 if __name__ == "__main__":
     manager.run()

@@ -1,210 +1,223 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-        <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Inbox</h3>
+    <style>
+    .row{
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .table>thead>tr>th{
+        font-weight: 700;
+        font-size: 12px;
+        color: #222;
+        border-bottom-color: #ccc;
+        border-bottom-width: 1px;
+    }
+    .page-info{
+        color: #a3afb7;
+        position: relative;
+        vertical-align: middle;
+        text-align:center;
+        font-size: 12px;
+{#        margin-right: 26px; #}
+        float: left;
+        padding: 6px 12px;
+    }
+    </style>
+    <main class="nav-tabs-custom" id="boss-module">
+    <ul class="nav nav-tabs">
 
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search Mail">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">11 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">15 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">Yesterday</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">4 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">14 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
-                  </tr>
-                  </tbody>
-                </table>
-                <!-- /.table -->
-              </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-            </div>
-          </div>
+                <li ><a href="javascript:void(0);"><span>所有人</span></a></li>
+                <li class="active"><a href="#"><span data-log="ad-kf-gt">分组</span></a></li>
+                <li><a href="#"><span>角色设置</span></a></li>
+    </ul>
+    <div class="row">
+        <label>
 
+            <select name="role" class="form-control input-sm" aria-controls="example1">
+                <option value="all">所有角色</option>
+                <option value="manager">管理员</option>
+                <option value="kefu">普通客服</option>
+            </select>
+        </label>
+        <div class="pull-right">
+            <div id="kefu-search" style="margin-right: 10px" class="pull-left">
+                    <input type="search" class="form-control input-sm" style="margin-right: 10px" placeholder="输入客服姓名/昵称/帐号/手机号" maxlength="100">
+
+            </div>
+            <div class="pull-right">
+            <button type="button" class="btn btn-primary btn-sm">新增客服
+            </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table id="generatedTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>昵称</th>
+                        <th>姓名</th>
+                        <th>账号</th>
+                        <th>手机号</th>
+                        <th>角色</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="cloneTr">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     </tr>
+                 </tbody>
+        </table>
+    </div>
+    <div class="row">
+    <nav class="text-right" aria-label="Page navigation">
+
+        <ul class="pagination">
+            <li class="page-info">共1页</li>
+            <li>
+              <a onclick="m_prePage()" aria-label="Previous">
+                <span>&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a id="page_num" href="#">1</a></li>
+            <li>
+              <a onclick="m_nextPage()" aria-label="Next">
+                <span>&raquo;</span>
+              </a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript">
+
+        $.ajax({
+            type:"GET",
+            url:'../static/data/test1.json',
+            dataType: 'json',
+            cache: false,
+     //       data:"datas="+datas;//要发送的数据
+            success: createTable
+        });
+
+
+    function createTable(objects){
+      //1,获取上面id为cloneTr的tr元素
+        console.log('createtable');
+        {#  初始化表格      #}
+
+
+        document.getElementById("generatedTable").innerHTML='<thead>\
+                    <tr>\
+                        <th>昵称</th>\
+                        <th>姓名</th>\
+                        <th>账号</th>\
+                        <th>手机号</th>\
+                        <th>角色</th>\
+                        <th>操作</th>\
+                    </tr>\
+                </thead>\
+                <tbody>\
+                    <tr id="cloneTr">\
+                        <td></td>\
+                        <td></td>\
+                        <td></td>\
+                        <td></td>\
+                        <td></td>\
+                        <td></td>\
+                     </tr>\
+                 </tbody>';
+
+{#        console.log($("#generatedTable").html());#}
+
+        $("#cloneTr").show();
+        var tr = $("#cloneTr");
+
+       $.each(objects, function(index,item){
+             //克隆tr，每次遍历都可以产生新的tr
+
+               var clonedTr = tr.clone();
+               var _index = index;
+
+               //循环遍历cloneTr的每一个td元素，并赋值
+                $.each(item, function(i, d){
+                    var clonedTr = tr.clone();
+
+
+               clonedTr.children("td").each(function(inner_index){
+                      //根据索引为每一个td赋值
+                            switch(inner_index){
+                                  case(0):
+                                     $(this).html(d["nickname"]);
+                                     break;
+                                  case(1):
+                                     $(this).html(d["name"]);
+                                     break;
+                                 case(2):
+                                     $(this).html(d["username"]);
+                                     break;
+                                 case(3):
+                                     $(this).html(d["phone"]);
+                                     break;
+                                 case(4):
+                                     $(this).html(d["role"]);
+                                     break;
+
+                           }//end switch
+                   });
+               clonedTr.insertAfter(tr);
+            });//end children.each
+
+
+           //把克隆好的tr追加原来的tr后面
+
+        });//end $each
+        $("#cloneTr").hide();//隐藏id=clone的tr，因为该tr中的td没有数据，不隐藏起来会在生成的table第一行显示一个空行
+        $("#generatedTable").show();
+    }
+//end success
+</script>
+    <script>
+    function m_nextPage(){
+        console.log('nextpage');
+        var page_num = parseInt(document.getElementById('page_num').innerHTML)+1;
+        document.getElementById('page_num').innerHTML = page_num;
+        var filename = 'test'+page_num+'.json';
+        $.ajax({
+            type:"GET",
+            url:'../static/data/'+filename,
+            dataType: 'json',
+            cache: false,
+     //       data:"datas="+datas;//要发送的数据
+            success: createTable
+        });
+    }
+
+    function m_prePage(){
+        console.log('prepage');
+        var page_num = parseInt(document.getElementById('page_num').innerHTML)-1;
+        if (page_num < 1){ page_num = 1;}
+
+        document.getElementById('page_num').innerHTML = page_num;
+        var filename = 'test'+page_num+'.json';
+        $.ajax({
+            type:"GET",
+            url:'../static/data/'+filename,
+            dataType: 'json',
+            cache: false,
+     //       data:"datas="+datas;//要发送的数据
+            success: createTable
+        });
+    }
+
+    </script>
 
 {% endblock %}
