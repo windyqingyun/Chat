@@ -77,24 +77,28 @@
                 <div class="tab-pane fade in active" id="common">
                     <div id="tree"></div>
 
-                    <div class="common-tool" style="position: absolute;bottom: 2px; "  >
-                        <table>
-                            <th>
-                                <div class="dropup">
+                    <div class="row" style="position: absolute;bottom: 2px; "  >
+                        <div class="col-md-3">
+                            <div class="dropup">
                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
                                         <i class="fa fa-plus"></i>添加<b class="caret"></b>
                                     </button>
-                                    <ul class="dropdown-menu">
-                                         <li><a href="##">常用语组</a></li>
-                                         <li><a href="##">常用语</a></li>
+                                    <ul class="dropdown-menu" style="border: 1px solid #ccc">
+                                         <li style="text-align: center"><a href="#" data-toggle="modal" data-target="#addCommonLanguageGroupModal">常用语组</a></li>
+                                         <li style="text-align: center"><a href="#" data-toggle="modal" data-target="#addCommonLanguageModal">常用语</a></li>
                                     </ul>
                                 </div>
-                            </th>
+                        </div>
+                         <div class="col-md-3">
+                             <a type="button" class="btn btn-default"><i class="fa fa-edit"></i>修改</a>
+                         </div>
+                         <div class="col-md-3">
+                             <a type="button" class="btn btn-default"><i class="fa fa-remove"></i>删除</a>
+                         </div>
+                         <div class="col-md-3">
+                             <a type="button" class="btn btn-default"><i class="fa fa-refresh"></i>刷新</a>
+                         </div>
 
-                            <th><a type="button" class="btn btn-default"><i class="fa fa-edit"></i>修改</a></th>
-                            <th><a type="button" class="btn btn-default"><i class="fa fa-remove"></i>删除</a></th>
-                            <th><a type="button" class="btn btn-default"><i class="fa fa-refresh"></i>刷新</a></th>
-                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="record">
@@ -105,6 +109,90 @@
 
     </div>
 </div>
+
+
+
+<!-- 常用语组 增加/修改 （Modal） -->
+<div class="modal fade" id="addCommonLanguageGroupModal" tabindex="-1" role="dialog" aria-labelledby="commonLanguageGroupModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="commonLanguageGroupModalLabel">
+					添加常用语组
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div class="input-group">
+                    <span class="input-group-addon">名称</span>
+                    <input type="text" class="form-control" placeholder="名称">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">描述</span>
+                    <input type="text" class="form-control" placeholder="描述">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">提交更改</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 常用语组 增加/修改 （Modal）END -->
+
+
+<!-- 常用语 增加/修改 （Modal） -->
+<div class="modal fade" id="addCommonLanguageModal" tabindex="-1" role="dialog" aria-labelledby="commonLanguageModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="commonLanguageModalLabel">
+					添加常用语
+				</h4>
+			</div>
+			<div class="modal-body">
+
+                <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">默认分组
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">自定义1</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">自定义2</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">自定义3</a>
+                        </li>
+                    </ul>
+                </div>
+
+				<div class="input-group">
+                    <span class="input-group-addon">名称</span>
+                    <input type="text" class="form-control" placeholder="名称">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">显示内容</span>
+                    <input type="text" class="form-control" placeholder="显示内容">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">提交更改</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 常用语 增加/修改 （Modal） END -->
+
 {#<script src="{{ url_for('static',filename='jquery/dist/jquery.min.js') }}"></script>#}
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='js/talk.js') }}"></script>
