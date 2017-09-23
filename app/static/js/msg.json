@@ -1,58 +1,44 @@
 {
     "msg": [
         {
-            "name": "张三",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "游客yf32334访问药材网",
+            "time": "12: 30: 30"
         },
         {
-            "name": "李四",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "游客yf23423访问药材网",
+            "time": "12: 31: 12"
         },
         {
-            "name": "王五",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "用户阿本提交订单",
+            "time": "12: 31: 30"
         },
         {
-            "name": "赵六",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "游客yf32334开始注册账号",
+            "time": "12: 33: 30"
         },
         {
-            "name": "孙七",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "用户小王八登录药材网",
+            "time": "12: 33: 35"
         },
         {
-            "name": "林八",
-            "ip": "127.0.0.1",
-            "accessCount": "10",
-            "accessTime": "00: 30: 30",
-            "orderCount": "10",
-            "lastAccept": "客服一",
-            "currentAccept": "客服二"
+            "content": "用户荆轲刺秦王提交订单",
+            "time": "12: 35: 30"
+        },
+        {
+            "content": "游客yf34523访问药材网",
+            "time": "12: 37: 44"
+        },
+        {
+            "content": "游客yf34983开始注册账号",
+            "time": "12: 39: 30"
+        },
+        {
+            "content": "用户猜猜我是谁登录药材网",
+            "time": "12: 44: 30"
+        },
+        {
+            "content": "用户一帆风顺提交订单",
+            "time": "12: 45: 30"
         }
     ]
 }

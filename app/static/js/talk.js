@@ -16,7 +16,7 @@ function  startGetReplyTask(kfId) {
                     chatRecord = result.message
                     if( currentActive ==  chatRecord.userId ){
                         $('.showContent').append('left:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>')
-                        $('.showContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                        $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
                     }
 
                 }

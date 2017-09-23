@@ -18,12 +18,36 @@ th,tr{
 }
 table thead th{ background: #e2e3e3;}
 
+.border{
+    border: 1px solid #ccc;
+}
+
 .pull-right {
   float: right !important;
 }
 .pull-left {
   float: left !important;
 }
+
+/* 即时消息 */
+
+.msgList{
+    overflow-y: auto;
+    height: 90%;
+    font-size: 13pt;
+}
+
+.msgList .row{
+    width: 100%;
+    border-bottom: 0.5px solid #ccc;
+    padding: 5px 0;
+}
+
+.msgList>.row .active{
+    background: red;
+}
+/* 即时消息 end */
+
 
 /* 当前对话 列表  */
 .chat-user-list {

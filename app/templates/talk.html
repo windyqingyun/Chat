@@ -3,24 +3,16 @@
 {% block page_content %}
 <div class="talkContent">
     <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;">
-        <div  style="overflow-y: auto;height: 100%">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>访客姓名</th>
-                        <th>IP</th>
-                        <th>访问次数</th>
-                        <th>访问时间</th>
-                        <th>下单次数</th>
-                        <th>上次接待</th>
-                        <th>当前接待</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody class="guestList">
-                </tbody>
-            </table>
+        <div class="row" style="width: 100%;">
+            <div class="col-md-10 border">即时消息内容</div>
+            <div class="col-md-2 border">时间</div>
         </div>
+
+        <div class="msgList" style="padding: 5px 0;font-size: 13pt;">
+
+        </div>
+
+
     </div>
     <div class="row" style="height: 75%;">
         <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc">
@@ -60,9 +52,7 @@
                 <div class="tools" style="height: 5%;border: 1px solid #ccc">
                 </div>
                 <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">
-                    <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none">
-
-                    </textarea>
+                    <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none"></textarea>
                 </div>
             </div>
 
@@ -76,29 +66,27 @@
             <div id="rightTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="common">
                     <div id="tree"></div>
+                    <div style="width: 29%;position: absolute;bottom: 2px;">
+                        <div class="row"   >
+                            <div class="col-md-4">
+                                <div class="dropup">
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                            <i class="fa fa-plus"></i>添加<b class="caret"></b>
+                                        </button>
+                                        <ul class="dropdown-menu" style="border: 1px solid #ccc">
+                                             <li style="text-align: center"><a href="#" data-toggle="modal" id="addCommonLanguageGroup" data-target="#addCommonLanguageGroupModal">常用语组</a></li>
+                                             <li style="text-align: center"><a href="#" data-toggle="modal" id="addCommonLanguage" data-target="#addCommonLanguageModal">常用语</a></li>
+                                        </ul>
+                                    </div>
+                            </div>
+                             <div class="col-md-4">
+                                 <a type="button" class="btn btn-default" id="update"><i class="fa fa-edit"></i>修改</a>
+                             </div>
+                             <div class="col-md-4">
+                                 <a type="button" class="btn btn-default" id="remove"><i class="fa fa-remove"></i>删除</a>
+                             </div>
 
-                    <div class="row" style="position: absolute;bottom: 2px; "  >
-                        <div class="col-md-3">
-                            <div class="dropup">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                                        <i class="fa fa-plus"></i>添加<b class="caret"></b>
-                                    </button>
-                                    <ul class="dropdown-menu" style="border: 1px solid #ccc">
-                                         <li style="text-align: center"><a href="#" data-toggle="modal" data-target="#addCommonLanguageGroupModal">常用语组</a></li>
-                                         <li style="text-align: center"><a href="#" data-toggle="modal" data-target="#addCommonLanguageModal">常用语</a></li>
-                                    </ul>
-                                </div>
                         </div>
-                         <div class="col-md-3">
-                             <a type="button" class="btn btn-default"><i class="fa fa-edit"></i>修改</a>
-                         </div>
-                         <div class="col-md-3">
-                             <a type="button" class="btn btn-default"><i class="fa fa-remove"></i>删除</a>
-                         </div>
-                         <div class="col-md-3">
-                             <a type="button" class="btn btn-default"><i class="fa fa-refresh"></i>刷新</a>
-                         </div>
-
                     </div>
                 </div>
                 <div class="tab-pane fade" id="record">
@@ -121,22 +109,16 @@
 					&times;
 				</button>
 				<h4 class="modal-title" id="commonLanguageGroupModalLabel">
-					添加常用语组
+					添加常用语分组信息
 				</h4>
 			</div>
 			<div class="modal-body">
-				<div class="input-group">
-                    <span class="input-group-addon">名称</span>
-                    <input type="text" class="form-control" placeholder="名称">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">描述</span>
-                    <input type="text" class="form-control" placeholder="描述">
-                </div>
+                    <span>常用语分类（20字以内）</span>
+                    <input type="text" class="form-control" id="commonLanguageGroupText">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary">提交更改</button>
+				<button type="button" class="btn btn-primary">确定</button>
 			</div>
 		</div>
 	</div>
@@ -157,31 +139,23 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-
-                <div class="dropdown">
-                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">默认分组
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">自定义1</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">自定义2</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">自定义3</a>
-                        </li>
-                    </ul>
+                <div class="form-group">
+                    <label>所属分类：</label>
+                    <select class="combobox form-control" id="commonLanguageGroupSelect">
+                          <option value="0">默认分组</option>
+                          <option value="1">自定义1</option>
+                          <option value="2">自定义2</option>
+                    </select>
                 </div>
 
-				<div class="input-group">
-                    <span class="input-group-addon">名称</span>
-                    <input type="text" class="form-control" placeholder="名称">
+                <div class="form-group">
+                    <span>常用语标题：</span>
+                    <input type="text" class="form-control" placeholder="标题" id="commonLanguageTitle">
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon">显示内容</span>
-                    <input type="text" class="form-control" placeholder="显示内容">
+
+                <div class="form-group">
+                    <span>常用语内容：</span>
+                     <textarea class="form-control" rows="5" placeholder="内容" id="commonLanguageContent" style="resize: none;"></textarea>
                 </div>
 			</div>
 			<div class="modal-footer">
@@ -237,7 +211,9 @@
     }
 
     $('#tree').treeview({data: getTree()});
-    $('#tree').on('nodeSelected', function(event, node) {
+    $tree = $('#tree');
+
+    $tree.on('nodeSelected', function(event, node) {
         if(node.value != undefined){
             $('#inputContent').val(node.value);
             $('#inputContent').focus()
@@ -249,25 +225,57 @@
             url : '{{ url_for('static',filename='js/msg.json') }}',
             type : "GET",
             dataType:'json',
+            async:false,
             success : function (result){
                   $.each( result.msg, function(index, o)
                   {
-                      _html = '<tr>                               \
-                                    <td>'+o.name+'</td>           \
-                                    <td>'+o.ip+'</td>             \
-                                    <td>'+o.accessCount+'</td>    \
-                                    <td>'+o.accessTime+'</td>     \
-                                    <td>'+o.orderCount+'</td>     \
-                                    <td>'+o.lastAccept+'</td>     \
-                                    <td>'+o.currentAccept+'</td>  \
-                                    <td>正在通话</td>               \
-                                 </tr>'
-                    $('.guestList').append(_html)
+                          _html = '<div class="row"> \
+                                    <div class="col-md-10">'+o.content+'</div>\
+                                    <div class="col-md-2">'+o.time+'</div>  \
+                               </div>';
+                          $('.msgList').append(_html)
+                          $('.msgList').scrollTop( $('.msgList')[0].scrollHeight);
+
                   });
 
             }
      });
 
+     //添加常用语分组 按钮点击事件 --  显示模态框
+     $('#addCommonLanguageGroup').on('click',function () {
+        $('#commonLanguageGroupText').val('');
+     });
+     //添加常用语 按钮点击事件 --  显示模态框
+     $('#addCommonLanguage').on('click',function () {
+        $('#commonLanguageGroupSelect').find("option[value = '"+0+"']").attr("selected","selected");
+        $('#commonLanguageTitle').val('')
+        $('#commonLanguageContent').val('')
+     });
+     //修改按钮点击事件 --显示模态框
+     $('#update').on('click',function () {
+
+       var arr = $tree.treeview('getSelected');
+       if(arr.length === 0 ){
+           alert('请选中要修改的内容')
+           return;
+       }
+        if(arr[0].nodes){
+            $('#commonLanguageGroupText').val(arr[0].text);
+            $('#addCommonLanguageGroupModal').modal();
+        }else{
+            $('#commonLanguageTitle').val(arr[0].text);
+            $('#commonLanguageContent').val(arr[0].value);
+            $('#addCommonLanguageModal').modal();
+        }
+
+     });
+
+     //删除按钮点击事件
+     $('#remove').on('click',function () {
+        alert(4);
+     });
+
+    //绑定Enter事件
     $('#inputContent').bind('keyup', function(event) {
         if (event.ctrlKey && event.keyCode == 13) {
             event.preventDefault();
@@ -278,6 +286,7 @@
             send('{{ kf.id }}','{{ kf.name }}')
         }
     });
+
 
 
 </script>
