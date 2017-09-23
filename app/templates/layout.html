@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='Ionicons/css/ionicons.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/talk.css') }}">
+
   <link rel="stylesheet" href="{{ url_for('static',filename='adminLTE/css/AdminLTE.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='adminLTE/css/skins/_all-skins.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/talk.css') }}">
 
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -183,7 +184,7 @@
 
 {#   以下是主页内容  #}
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <!-- Main content -->
     {% block page_content %}
 
@@ -196,6 +197,7 @@
 {% block js %}
 <!-- jQuery 3 -->
 <script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
@@ -208,8 +210,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url_for('static',filename='adminLTE/js/demo.js') }}"></script>
 
-
+    {% block layout_js %}
+    {% endblock layout_js %}
 {% endblock %}
+
 
 </body>
 </html>

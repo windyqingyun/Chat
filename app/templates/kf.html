@@ -1,6 +1,6 @@
-{% extends 'layout.html' %}
+    {% extends 'layout.html' %}
 
-{% block page_content %}
+    {% block page_content %}
     <style>
     .row{
         margin-left: 10px;
@@ -20,204 +20,31 @@
         vertical-align: middle;
         text-align:center;
         font-size: 12px;
-{#        margin-right: 26px; #}
+    {#        margin-right: 26px; #}
         float: left;
         padding: 6px 12px;
     }
+    .y-icon{
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+
     </style>
     <main class="nav-tabs-custom" id="boss-module">
     <ul class="nav nav-tabs">
 
-                <li ><a href="javascript:void(0);"><span>所有人</span></a></li>
-                <li class="active"><a href="#"><span data-log="ad-kf-gt">分组</span></a></li>
-                <li><a href="#"><span>角色设置</span></a></li>
+                <li id="all" class="active"><a href="{{ url_for('kfAll') }}"><span>所有人</span></a></li>
+                <li id="group" ><a href="{{ url_for('kfGroup') }}"><span data-log="ad-kf-gt">分组</span></a></li>
+                <li id="roleSet"><a href="#"><span>角色设置</span></a></li>
     </ul>
-    <div class="row">
-        <label>
 
-            <select name="role" class="form-control input-sm" aria-controls="example1">
-                <option value="all">所有角色</option>
-                <option value="manager">管理员</option>
-                <option value="kefu">普通客服</option>
-            </select>
-        </label>
-        <div class="pull-right">
-            <div id="kefu-search" style="margin-right: 10px" class="pull-left">
-                    <input type="search" class="form-control input-sm" style="margin-right: 10px" placeholder="输入客服姓名/昵称/帐号/手机号" maxlength="100">
 
-            </div>
-            <div class="pull-right">
-            <button type="button" class="btn btn-primary btn-sm">新增客服
-            </button>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <table id="generatedTable" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>昵称</th>
-                        <th>姓名</th>
-                        <th>账号</th>
-                        <th>手机号</th>
-                        <th>角色</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="cloneTr">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                     </tr>
-                 </tbody>
-        </table>
-    </div>
-    <div class="row">
-    <nav class="text-right" aria-label="Page navigation">
-
-        <ul class="pagination">
-            <li class="page-info">共1页</li>
-            <li>
-              <a onclick="m_prePage()" aria-label="Previous">
-                <span>&laquo;</span>
-              </a>
-            </li>
-            <li class="active"><a id="page_num" href="#">1</a></li>
-            <li>
-              <a onclick="m_nextPage()" aria-label="Next">
-                <span>&raquo;</span>
-              </a>
-            </li>
-        </ul>
-    </nav>
-    </div>
+    {% block content %}
+    {% endblock %}
     </main>
-    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
-    <script type="text/javascript">
-
-        $.ajax({
-            type:"GET",
-            url:'../static/data/test1.json',
-            dataType: 'json',
-            cache: false,
-     //       data:"datas="+datas;//要发送的数据
-            success: createTable
-        });
-
-
-    function createTable(objects){
-      //1,获取上面id为cloneTr的tr元素
-        console.log('createtable');
-        {#  初始化表格      #}
-
-
-        document.getElementById("generatedTable").innerHTML='<thead>\
-                    <tr>\
-                        <th>昵称</th>\
-                        <th>姓名</th>\
-                        <th>账号</th>\
-                        <th>手机号</th>\
-                        <th>角色</th>\
-                        <th>操作</th>\
-                    </tr>\
-                </thead>\
-                <tbody>\
-                    <tr id="cloneTr">\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                     </tr>\
-                 </tbody>';
-
-{#        console.log($("#generatedTable").html());#}
-
-        $("#cloneTr").show();
-        var tr = $("#cloneTr");
-
-       $.each(objects, function(index,item){
-             //克隆tr，每次遍历都可以产生新的tr
-
-               var clonedTr = tr.clone();
-               var _index = index;
-
-               //循环遍历cloneTr的每一个td元素，并赋值
-                $.each(item, function(i, d){
-                    var clonedTr = tr.clone();
-
-
-               clonedTr.children("td").each(function(inner_index){
-                      //根据索引为每一个td赋值
-                            switch(inner_index){
-                                  case(0):
-                                     $(this).html(d["nickname"]);
-                                     break;
-                                  case(1):
-                                     $(this).html(d["name"]);
-                                     break;
-                                 case(2):
-                                     $(this).html(d["username"]);
-                                     break;
-                                 case(3):
-                                     $(this).html(d["phone"]);
-                                     break;
-                                 case(4):
-                                     $(this).html(d["role"]);
-                                     break;
-
-                           }//end switch
-                   });
-               clonedTr.insertAfter(tr);
-            });//end children.each
-
-
-           //把克隆好的tr追加原来的tr后面
-
-        });//end $each
-        $("#cloneTr").hide();//隐藏id=clone的tr，因为该tr中的td没有数据，不隐藏起来会在生成的table第一行显示一个空行
-        $("#generatedTable").show();
-    }
-//end success
-</script>
-    <script>
-    function m_nextPage(){
-        console.log('nextpage');
-        var page_num = parseInt(document.getElementById('page_num').innerHTML)+1;
-        document.getElementById('page_num').innerHTML = page_num;
-        var filename = 'test'+page_num+'.json';
-        $.ajax({
-            type:"GET",
-            url:'../static/data/'+filename,
-            dataType: 'json',
-            cache: false,
-     //       data:"datas="+datas;//要发送的数据
-            success: createTable
-        });
-    }
-
-    function m_prePage(){
-        console.log('prepage');
-        var page_num = parseInt(document.getElementById('page_num').innerHTML)-1;
-        if (page_num < 1){ page_num = 1;}
-
-        document.getElementById('page_num').innerHTML = page_num;
-        var filename = 'test'+page_num+'.json';
-        $.ajax({
-            type:"GET",
-            url:'../static/data/'+filename,
-            dataType: 'json',
-            cache: false,
-     //       data:"datas="+datas;//要发送的数据
-            success: createTable
-        });
-    }
-
-    </script>
-
-{% endblock %}
+    {% endblock %}
+    {% block layout_js %}
+        {% block kefu_js %}
+        {% endblock kefu_js %}
+    {% endblock layout_js %}

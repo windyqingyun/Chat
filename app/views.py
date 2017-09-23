@@ -27,6 +27,16 @@ def toKf():
     # getAllKf()
     return render_template('kf.html')
 
+@app.route('/kf/all')
+def kfAll():
+    return render_template('kefu_all.html')
+@app.route('/kf/group')
+def kfGroup():
+    return render_template('kefu_group.html')
+
+@app.route('/kf/add')
+def kfEdit():
+    return render_template('kefu_add.html')
 
 @app.route('/',methods=['GET','POST'])
 def index():

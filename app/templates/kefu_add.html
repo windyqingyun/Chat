@@ -1,0 +1,87 @@
+{% extends 'kf.html' %}
+{% block content %}
+    <div class="kefu-edit">
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('kfAll') }}">所有人</a></li>
+            <li class="active">新增客服</li>
+
+        </ol>
+        <div class="panel-title">
+            新增客服
+        </div>
+    </div>
+    <form class="form-horizontal kefu-form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">账号*</label>
+
+                  <div class="col-sm-6">
+                    <input type="email" class="form-control" id="inputAccount" placeholder="须为字母或数字，用于登录和密码找回">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputName" class="col-sm-2 control-label">姓名*</label>
+
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control" id="inputName" placeholder="用于报表和历史回话的显示">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputNickname" class="col-sm-2 control-label">昵称*</label>
+
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control" id="inputNickname" placeholder="用于访客端聊天窗口的显示">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPhone" class="col-sm-2 control-label">手机号</label>
+
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputPhone" placeholder="用于企业内部通讯">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+
+                  <div class="col-sm-6">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="请输入邮箱地址">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword" class="col-sm-2 control-label">初始密码*</label>
+
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="请输入6到16个字符">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputRole" class="col-sm-2 control-label">选择角色*</label>
+
+                  <div class="col-sm-3">
+                    <select name="role" class="form-control input-sm" aria-controls="example1">
+                        <option value="all">所有角色</option>
+                        <option value="manager">管理员</option>
+                        <option value="kefu">普通客服</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputRecept" class="col-sm-2 control-label">最大接待量*</label>
+
+                  <div class="col-sm-2">
+                    <input type="number" class="form-control" id="inputRecept" value="1">
+
+                  </div>
+                  <label class="control-label">人</label>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                  <label for="inputRecept" class="col-sm-2 control-label"></label>
+                  <button type="submit" class="btn btn-info" style="margin-left:6px;">保存</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+
+{% endblock %}
