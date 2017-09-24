@@ -2,20 +2,20 @@
 
 {% block page_content %}
 <div class="talkContent">
-    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;">
+    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;" id="talk-top">
         <div class="row" style="width: 100%;">
             <div class="col-md-2 border">用户</div>
             <div class="col-md-8 border">即时消息内容</div>
             <div class="col-md-2 border">时间</div>
         </div>
 
-        <div class="msgList" style="padding: 5px 0;font-size: 13pt;">
+        <div class="msgList">
 
         </div>
 
 
     </div>
-    <div class="row" style="height: 75%;">
+    <div class="row" style="height: 75%;" id="talk-center">
         <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
            <div>
                 <ul id="leftTab" class="nav nav-tabs" >
@@ -305,9 +305,21 @@
 
      });
 
+     var flag = true
      //删除按钮点击事件
      $('#remove').on('click',function () {
-        alert(4);
+         h = bodyHeight-52
+         if(flag) {
+             $("#talk-top").animate({height: '0px'});
+             $("#talk-top").hide();
+             $("#talk-center").animate({height: h});
+             flag = false;
+         }else{
+              $("#talk-top").animate({height: h*0.25});
+              $("#talk-top").show();
+              $("#talk-center").animate({height: h*0.75});
+              flag = true;
+         }
      });
 
     //绑定Enter事件

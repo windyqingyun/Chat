@@ -34,7 +34,8 @@ table thead th{ background: #e2e3e3;}
 .msgList{
     overflow-y: auto;
     height: 90%;
-    font-size: 13pt;
+    font-size: 9pt;
+    padding: 5px 0;
 }
 
 .msgList .row{
