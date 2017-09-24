@@ -4,7 +4,8 @@
 <div class="talkContent">
     <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;">
         <div class="row" style="width: 100%;">
-            <div class="col-md-10 border">即时消息内容</div>
+            <div class="col-md-2 border">用户</div>
+            <div class="col-md-8 border">即时消息内容</div>
             <div class="col-md-2 border">时间</div>
         </div>
 
@@ -15,11 +16,13 @@
 
     </div>
     <div class="row" style="height: 75%;">
-        <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc">
-            <ul id="leftTab" class="nav nav-tabs">
-                <li class="active" style="width: 50%"><a href="#talkList" data-toggle="tab">对话列表</a></li>
-                <li style="width: 50%"><a href="#kfList" data-toggle="tab">客服</a></li>
-            </ul>
+        <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
+           <div>
+                <ul id="leftTab" class="nav nav-tabs" >
+                    <li class="active" style="width: 50%"><a href="#talkList" data-toggle="tab">对话列表</a></li>
+                    <li style="width: 50%"><a href="#kfList" data-toggle="tab">客服</a></li>
+                </ul>
+           </div>
             <div id="leftTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="talkList">
                     <ul class="chat-user-list">
@@ -33,8 +36,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="kfList">
-                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
-                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                    <div id="kfTree"></div>
                 </div>
             </div>
         </div>
@@ -59,10 +61,12 @@
         </div>
 
         <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
-             <ul id="rightTab" class="nav nav-tabs">
-                <li class="active" style="width: 50%"><a href="#common" data-toggle="tab">常用语</a></li>
-                <li style="width: 50%" ><a href="#record"  data-toggle="tab">聊天记录</a></li>
-            </ul>
+            <div >
+                <ul id="rightTab" class="nav nav-tabs">
+                    <li class="active" style="width: 50%"><a href="#common" data-toggle="tab">常用语</a></li>
+                    <li style="width: 50%" ><a href="#record"  data-toggle="tab">聊天记录</a></li>
+                </ul>
+            </div>
             <div id="rightTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="common">
                     <div id="tree"></div>
@@ -142,9 +146,8 @@
                 <div class="form-group">
                     <label>所属分类：</label>
                     <select class="combobox form-control" id="commonLanguageGroupSelect">
-                          <option value="0">默认分组</option>
-                          <option value="1">自定义1</option>
-                          <option value="2">自定义2</option>
+                          <option value="1">默认分组</option>
+                          <option value="2">自定义1</option>
                     </select>
                 </div>
 
@@ -176,6 +179,11 @@
     //获取窗口高度 并设置内容界面高度
     bodyHeight = $(document.body).height()
     $('.talkContent').css('height',bodyHeight-50)
+    $(window).resize(function() {
+    var height = $(this).height();
+      $('.talkContent').css('height',height-50)
+    });
+
 
     //内容输入初始化
     $('#inputContent').val('')
@@ -210,14 +218,39 @@
          return treeContent;
     }
 
+    //初始化常用语树
     $('#tree').treeview({data: getTree()});
     $tree = $('#tree');
 
     $tree.on('nodeSelected', function(event, node) {
         if(node.value != undefined){
             $('#inputContent').val(node.value);
-            $('#inputContent').focus()
+            $('#inputContent').focus();
         }
+    });
+
+
+    //获取客服对话列表树内容
+     function getKfTree() {
+         var treeContent ;
+         //同步加载
+         $.ajax({
+            url : '{{ url_for('static',filename='js/kfTree.json') }}',
+            type : "GET",
+            async: false,
+            dataType:'json',
+            success : function (result){
+                treeContent = result.kfTree;
+            }
+          });
+         return treeContent;
+    }
+    //初始化客服对话列表树
+    $('#kfTree').treeview({data: getKfTree()});
+    $kfTree = $('#kfTree');
+
+    $kfTree.on('nodeSelected', function(event, node) {
+        alert(node.id );
     });
 
      //获取最新访客消息
@@ -225,12 +258,12 @@
             url : '{{ url_for('static',filename='js/msg.json') }}',
             type : "GET",
             dataType:'json',
-            async:false,
             success : function (result){
                   $.each( result.msg, function(index, o)
                   {
                           _html = '<div class="row"> \
-                                    <div class="col-md-10">'+o.content+'</div>\
+                                    <div class="col-md-2">'+o.name+'</div>\
+                                    <div class="col-md-8">'+o.content+'</div>\
                                     <div class="col-md-2">'+o.time+'</div>  \
                                </div>';
                           $('.msgList').append(_html)
@@ -247,7 +280,7 @@
      });
      //添加常用语 按钮点击事件 --  显示模态框
      $('#addCommonLanguage').on('click',function () {
-        $('#commonLanguageGroupSelect').find("option[value = '"+0+"']").attr("selected","selected");
+        $('#commonLanguageGroupSelect').find("option[value = '"+1+"']").attr("selected","selected");
         $('#commonLanguageTitle').val('')
         $('#commonLanguageContent').val('')
      });
@@ -263,6 +296,8 @@
             $('#commonLanguageGroupText').val(arr[0].text);
             $('#addCommonLanguageGroupModal').modal();
         }else{
+            alert(arr[0].pId);
+            $('#commonLanguageGroupSelect').find("option[value = '"+arr[0].pId+"']").attr("selected","selected");
             $('#commonLanguageTitle').val(arr[0].text);
             $('#commonLanguageContent').val(arr[0].value);
             $('#addCommonLanguageModal').modal();
