@@ -11,4 +11,4 @@ class DevConfig(Config):
         #Open the DEBUG
         DEBUG = True
         #DEBUG = False
-~   
+   

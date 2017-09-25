@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
-from flask.ext.script import Manager
+from flask_script import Manager
+from config import DevConfig
 from app import createApp
 
 app = createApp()

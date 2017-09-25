@@ -29,6 +29,11 @@ table thead th{ background: #e2e3e3;}
   float: left !important;
 }
 
+/*#talk-split :hover{*/
+    /*background: #000;*/
+/*}*/
+
+
 /* 即时消息 */
 
 .msgList{
