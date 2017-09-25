@@ -2,6 +2,8 @@
 
 {% block page_content %}
 <div class="talkContent">
+
+    {#  即时消息滚动  #}
     <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;" id="talk-top">
         <div class="row" style="width: 100%;">
             <div class="col-md-2 border">用户</div>
@@ -12,14 +14,14 @@
         <div class="msgList">
 
         </div>
-
-
     </div>
     <div class="row" style="height: 75%;" id="talk-center">
+        {#  上下伸展 分割块  #}
         <div style="height: 3%;text-align:center;" id="talk-split">
                 <i class="fa fa-sort-up"></i>
         </div>
         <div style="height: 97%">
+            {#  左 标签页  #}
             <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
                <div>
                     <ul id="leftTab" class="nav nav-tabs" >
@@ -45,11 +47,10 @@
                 </div>
             </div>
 
+            {#  中间 聊天内容 显示  #}
+            <div class="talk-room" style="float:left;width: 50%;height:100%;border: 1px solid #ccc">
 
-
-            <div class="talk-content" style="float:left;width: 50%;height:100%;border: 1px solid #ccc">
-
-                <div  style="height: 6%;text-align:center;padding-top: 10px;">张三</div>
+                <div  style="height: 6%;text-align:center;padding-top: 10px;">用户XXX</div>
                 <div  style="height: 94%;">
                     <div class="showContent" style="height: 75%;min-height:150px;overflow-y:auto;border: 1px solid #ccc">
                         <ul class="chat-msg" style="padding: 0px;">
@@ -64,6 +65,7 @@
 
             </div>
 
+            {#  右标签页 #}
             <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
             <div >
                 <ul id="rightTab" class="nav nav-tabs">
@@ -72,6 +74,7 @@
                 </ul>
             </div>
             <div id="rightTabContent" class="tab-content">
+                {# 常用语 #}
                 <div class="tab-pane fade in active" id="common">
                     <div id="tree"></div>
                     <div style="width: 29%;position: absolute;bottom: 2px;">
@@ -97,8 +100,43 @@
                         </div>
                     </div>
                 </div>
+                {# 聊天记录 #}
                 <div class="tab-pane fade" id="record">
-                    <p>聊天记录</p>
+                    <div class="showRecordContent" style="height: 100%;min-height:150px;overflow-y:auto;">
+                        <ul class="chat-msg-record" style="padding: 0px;">
+                            <li>
+                                <div class="leftSide" style="width: 45%;">
+                                    <div class="chat-info clearfix" style="width: auto;">
+                                        <span class="chat-name pull-left">张三</span>
+                                    </div>
+                                    <div class="clearfix" style="width: 100%;">
+                                        <img class="chat-img" src="../static/img/favicon.ico" alt="">
+                                        <div style="width: 150px;float: left;">
+                                        <div class="chat-text" style="width:auto;float: left;">
+                                            你好啊
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="rightSide" style="width: 45%;">
+                                    <div class="chat-info clearfix" style="width: auto;">
+                                        <span class="chat-name pull-right">我</span>
+                                    </div>
+                                    <div class="clearfix" style="width: 100%;">
+                                        <img class="chat-img" src="../static/img/favicon.ico" alt="">
+                                        <div style="width: 150px;float: right;">
+                                        <div class="chat-text" style="width:auto;float: right;">
+                                            弄啥嘞？
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -296,11 +334,14 @@
            alert('请选中要修改的内容')
            return;
        }
+       if(arr[0].pId === '99' || arr[0].id === '99'){
+           alert("公共常用语您没有修改权限");
+           return;
+       }
         if(arr[0].nodes){
             $('#commonLanguageGroupText').val(arr[0].text);
             $('#addCommonLanguageGroupModal').modal();
         }else{
-            alert(arr[0].pId);
             $('#commonLanguageGroupSelect').find("option[value = '"+arr[0].pId+"']").attr("selected","selected");
             $('#commonLanguageTitle').val(arr[0].text);
             $('#commonLanguageContent').val(arr[0].value);
@@ -309,6 +350,23 @@
 
      });
 
+     //删除按钮点击事件
+     $('#remove').on('click',function () {
+        var arr = $tree.treeview('getSelected');
+        if(arr.length === 0 ){
+           alert('请选中要删除的内容')
+           return;
+        }
+        if(arr[0].pId === '99' || arr[0].id === '99'){
+           alert("公共常用语您没有删除权限");
+           return;
+       }
+        if(arr[0].nodes){
+            alert("您确定要删除此项内容吗？删除它会将连它的子节点也一起删除")
+        }else{
+            alert("您确定要删除吗？")
+        }
+     });
 
 
      var flag = true

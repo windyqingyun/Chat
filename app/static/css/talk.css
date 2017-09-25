@@ -79,6 +79,13 @@ table thead th{ background: #e2e3e3;}
 /* 当前对话列表  end */
 
 /* 聊天信息 */
+.chat-msg-record>li{
+    list-style: none;
+    width: 100%;
+    clear: both;
+    padding: 10px;
+}
+
 .chat-msg>li{
     list-style: none;
     width: 100%;

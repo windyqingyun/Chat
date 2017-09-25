@@ -64,14 +64,14 @@ function  startGetReplyTask(kfId) {
                                         _html += '<li>                                              \
                                                     <div class="leftSide" style="width: 45%;">    \
                                                         <div class="chat-info clearfix" style="width: auto;"> \
-                                                            <span class="chat-name pull-right">'+chatRecord.userName+'</span>        \
+                                                            <span class="chat-name pull-left">'+chatRecord.userName+'</span>        \
                                                         </div>                                                      \
                                                         <div class="clearfix" style="width: 100%;">                \
                                                             <img class="chat-img" src="../static/img/favicon.ico" alt="">     \
-                                                            <div style="width: 300px;float: right;">                     \
-                                                            <div class="chat-text" style="width:auto;float: right;"> \
-                                                                '+chatRecord.content+'            \
-                                                            </div>\
+                                                            <div style="width: 300px;float: left;">                     \
+                                                                <div class="chat-text" style="width:auto;float: left;"> \
+                                                                    '+chatRecord.content+'            \
+                                                                </div>\
                                                             </div>\
                                                         </div>\
                                                     </div>\
@@ -85,9 +85,9 @@ function  startGetReplyTask(kfId) {
                                                         <div class="clearfix" style="width: 100%;">                \
                                                             <img class="chat-img" src="../static/img/favicon.ico" alt="">     \
                                                             <div style="width: 300px;float: right;">                     \
-                                                            <div class="chat-text" style="width:auto;float: right;"> \
-                                                                '+chatRecord.content+'            \
-                                                            </div>\
+                                                                <div class="chat-text" style="width:auto;float: right;"> \
+                                                                    '+chatRecord.content+'            \
+                                                                </div>\
                                                             </div>\
                                                         </div>\
                                                     </div>\
