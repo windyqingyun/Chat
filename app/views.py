@@ -24,8 +24,15 @@ def go():
 
 @app.route('/kf')
 def toKf():
-    # getAllKf()
     return render_template('test.html')
+
+@app.route('/user')
+def toUser():
+    return render_template('user.html')
+
+@app.route('/password')
+def toPassword():
+    return render_template('password.html')
 
 @app.route('/',methods=['GET','POST'])
 def index():

@@ -1,8 +1,91 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
+    <div class="page-content" style="padding: 40px">
 
+        <div class="page-header">
+            <h3>头像设置</h3>
+        </div>
 
+        <div class="divider"></div>
+        <div class="clearfix">
 
+            <div class="row">
+                <div class="col-md-1">
+                    <span>头像</span>
+                </div>
+                <div class="col-md-5" style="font-size: 12pt">
+                    <div class="row" style="padding: 0 0 5px 0">
+                        <span>上传头像</span>
+                     </div>
+                    <div class="row" style="padding: 5px 0">
+                        <small>建议上传图片尺寸为60px*60px，若不设置则使用系统默认头像</small>
+                    </div>
+                    <div class="row" style="padding: 5px 0">
+                        <button class="btn btn-default">上传头像</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row" style="text-align: center">
+                         <h4>预览</h4>
+                    </div>
+                    <div style="padding: 10px;border: 1px solid #ccc">
+                        <div style="text-align:center;border-radius: 50%;">
+                            <img src="../static/img/robot_portrait.png" width="150" height="150"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-1">
+                    <button class=" btn btn-primary">保存</button>
+                </div>
 
+            </div>
+
+        </div>
+
+        <div class="page-header" style="padding-top: 50px;">
+            <h3>个人信息</h3>
+        </div>
+
+        <div class="divider"></div>
+        <div class="clearfix">
+
+            <div class="row"  style="padding: 5px 0">
+                <div class="col-md-1">账号</div>
+                <div class="col-md-3">
+                    <input type="text"  class="form-control" value="zhangsan@qq.com"/>
+                </div>
+            </div>
+            <div class="row"  style="padding: 5px 0">
+                <div class="col-md-1">姓名</div>
+                <div class="col-md-3">
+                    <input type="text"  class="form-control" value="张三"/>
+                </div>
+            </div>
+             <div class="row"  style="padding: 5px 0">
+                <div class="col-md-1">昵称</div>
+                <div class="col-md-3">
+                    <input type="text"  class="form-control" value="永不凋零的脑壳"/>
+                </div>
+            </div>
+             <div class="row"  style="padding: 5px 0">
+                <div class="col-md-1">手机号</div>
+                <div class="col-md-3">
+                    <input type="text"  class="form-control" value="13012345678"/>
+                </div>
+            </div>
+
+             <div class="row" style="padding: 10px 0">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-1">
+                    <button class=" btn btn-primary">保存</button>
+                </div>
+
+            </div>
+        </div>
 {% endblock %}

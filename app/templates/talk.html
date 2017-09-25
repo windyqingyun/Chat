@@ -331,11 +331,11 @@
 
        var arr = $tree.treeview('getSelected');
        if(arr.length === 0 ){
-           alert('请选中要修改的内容')
+           Alert('请选中要修改的内容')
            return;
        }
        if(arr[0].pId === '99' || arr[0].id === '99'){
-           alert("公共常用语您没有修改权限");
+           Alert("公共常用语您没有修改权限");
            return;
        }
         if(arr[0].nodes){
@@ -354,17 +354,35 @@
      $('#remove').on('click',function () {
         var arr = $tree.treeview('getSelected');
         if(arr.length === 0 ){
-           alert('请选中要删除的内容')
+           Alert('请选中要删除的内容')
            return;
         }
         if(arr[0].pId === '99' || arr[0].id === '99'){
-           alert("公共常用语您没有删除权限");
+           Alert("公共常用语您没有删除权限");
            return;
        }
+        var deferred = $.Deferred();
         if(arr[0].nodes){
-            alert("您确定要删除此项内容吗？删除它会将连它的子节点也一起删除")
+
+             Confirm({
+                msg: '您确定要删除此项内容吗？删除它会将连它的子节点也一起删除',
+                onOk: function(){
+                    alert('确定删除')
+                },
+                onCancel: function(){
+                    deferred.reject();
+                }
+             });
         }else{
-            alert("您确定要删除吗？")
+            Confirm({
+                msg: "您确定要删除吗？",
+                onOk: function(){
+                     alert('确定删除')
+                },
+                onCancel: function(){
+                    deferred.reject();
+                }
+             });
         }
      });
 
