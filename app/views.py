@@ -28,8 +28,7 @@ def test():
 
 @app.route('/kf')
 def toKf():
-    # getAllKf()
-    return render_template('kf.html')
+    return render_template('kefu_all.html')
 
 @app.route('/kf/all')
 def kfAll():
@@ -41,6 +40,14 @@ def kfGroup():
 @app.route('/kf/add')
 def kfEdit():
     return render_template('kefu_add.html')
+
+@app.route('/user')
+def toUser():
+    return render_template('user.html')
+
+@app.route('/password')
+def toPassword():
+    return render_template('password.html')
 
 @app.route('/',methods=['GET','POST'])
 def index():
@@ -59,6 +66,7 @@ def index():
         kf = getFreeKf()
 
         if kf :
+
             kf.addUser(user)
         return  render_template('chat.html' ,user = user ,kf = kf)
 
@@ -109,7 +117,7 @@ def getReply():
     role = session.get('role')
     print  id
     if role :
-        print onlineKfs
+
         kf = onlineKfs.get(id,None)
         print kf
         if kf and kf.userLen() > 0:
@@ -129,7 +137,6 @@ def getNewRecord(userId):
     returnRecord = None
     #获取最新信息
     for chat in chatRecords:
-
         if chat.isRead: continue
         if session['role']:
             if chat.kfId == userId and chat.fromFlag == 'u':

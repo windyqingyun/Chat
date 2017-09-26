@@ -15,8 +15,8 @@ function  startGetReplyTask(kfId) {
                 if(result.message != '') {
                     chatRecord = result.message
                     if( currentActive ==  chatRecord.userId ){
-                        $('.msgContent').append('left:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>')
-                        $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                        $('.showContent').append('left:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>')
+                        $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
                     }
 
                 }
@@ -46,7 +46,7 @@ function  startGetReplyTask(kfId) {
 
                         $(this).addClass("active").siblings().removeClass("active");
                         $('#inputContent').val('')
-                        $('.msgContent').empty()
+                        $('.showContent').empty()
                         currentActive = $('.chat-user-list li.active').attr('id');
 
                          $.ajax({
@@ -61,13 +61,41 @@ function  startGetReplyTask(kfId) {
                                 for(var i = 0 ; i < chatRecords.length ; i++){
                                     chatRecord = chatRecords[i]
                                     if( chatRecord.fromFlag == 'u' ){
-                                        _html += 'u:<h3>'+chatRecord.userName +':' + chatRecord.content + '</h3>'
+                                        _html += '<li>                                              \
+                                                    <div class="leftSide" style="width: 45%;">    \
+                                                        <div class="chat-info clearfix" style="width: auto;"> \
+                                                            <span class="chat-name pull-left">'+chatRecord.userName+'</span>        \
+                                                        </div>                                                      \
+                                                        <div class="clearfix" style="width: 100%;">                \
+                                                            <img class="chat-img" src="../static/img/favicon.ico" alt="">     \
+                                                            <div style="width: 300px;float: left;">                     \
+                                                                <div class="chat-text" style="width:auto;float: left;"> \
+                                                                    '+chatRecord.content+'            \
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                  </li>'
                                     }else{
-                                        _html += 'k:<h3>'+chatRecord.kfName +':' + chatRecord.content + '</h3>'
+                                        _html += '<li>                                              \
+                                                    <div class="rightSide" style="width: 45%;">    \
+                                                        <div class="chat-info clearfix" style="width: auto;"> \
+                                                            <span class="chat-name pull-right">我</span>        \
+                                                        </div>                                                      \
+                                                        <div class="clearfix" style="width: 100%;">                \
+                                                            <img class="chat-img" src="../static/img/favicon.ico" alt="">     \
+                                                            <div style="width: 300px;float: right;">                     \
+                                                                <div class="chat-text" style="width:auto;float: right;"> \
+                                                                    '+chatRecord.content+'            \
+                                                                </div>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                 </li>'
                                     }
                                 }
-                                $('.msgContent').append(_html)
-                                $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                                $('.chat-msg').append(_html)
+                                $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
 
                             }
                         });
@@ -84,16 +112,33 @@ function  startGetReplyTask(kfId) {
 
 
 function send(kfId,kfName) {
-    content = $('#inputContent').val()
-    userId = $('.chat-user-list li.active').attr('id')
-
+    var content = $('#inputContent').val()
+    //正则替换
+    content = content.replace(/\n/g,'<br/>')
+    // userId = $('.chat-user-list li.active').attr('id')
+    userId = 's'
     if (content == ''){
         alert('请输入内容')
     }
-    else if (userId == '') {
+    else if (userId == undefined) {
         alert('请选择聊天对象')
     } else{
-        $('.msgContent').append('<h3>'+kfName+':'+content+'</h3>')
+        _html = '<li>                                              \
+                    <div class="rightSide" style="width: 45%;">    \
+                        <div class="chat-info clearfix" style="width: auto;"> \
+                            <span class="chat-name pull-right">我</span>        \
+                        </div>                                                      \
+                        <div class="clearfix" style="width: 100%;">                \
+                            <img class="chat-img" src="../static/img/favicon.ico" alt="">     \
+                            <div style="width: 300px;float: right;">                     \
+                            <div class="chat-text" style="width:auto;float: right;"> \
+                                '+content+'            \
+                            </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </li>'
+        $('.chat-msg').append(_html)
 
         userName = $('.chat-user-list li.active a span').text()
 
@@ -107,7 +152,7 @@ function send(kfId,kfName) {
             type : "POST",
             success : function (result){
                 $('#inputContent').val('')
-                $('.msgContent').scrollTop( $('.msgContent')[0].scrollHeight);
+                $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
             }
         });
     }

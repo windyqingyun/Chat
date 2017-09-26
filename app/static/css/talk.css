@@ -1,8 +1,65 @@
+table tbody {
+    display:block;
+    height: 100%;
+    overflow-y:auto;
+}
+
+table thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+table thead {
+    width: 100%
+    /*position:fixed;top:50px*/
+}
+th,tr{
+      text-align:center;
+}
+table thead th{ background: #e2e3e3;}
+
+.border{
+    border: 1px solid #ccc;
+}
+
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+
+/*#talk-split :hover{*/
+    /*background: #000;*/
+/*}*/
+
+
+/* 即时消息 */
+
+.msgList{
+    overflow-y: auto;
+    height: 90%;
+    font-size: 9pt;
+    padding: 5px 0;
+}
+
+.msgList .row{
+    width: 100%;
+    border-bottom: 0.5px solid #ccc;
+    padding: 5px 0;
+}
+
+.msgList>.row .active{
+    background: red;
+}
+/* 即时消息 end */
+
+
+/* 当前对话 列表  */
 .chat-user-list {
+
       list-style: none;
-      margin-top: 20px;
       padding: 0;
-      height: 480px;
 
 }
 
@@ -10,15 +67,23 @@
     position: relative;
     margin: 2px;
     padding: 10px;
-    background-color: #FFEFDB;
-}
-
-.chat-user-list li:hover {
-    background-color: #ccc;
+     color: #000;
 }
 
 .chat-user-list li.active {
-    background-color: #E0EEFF;
+    background-color: #428BCA;
+}
+.chat-user-list li.active > a{
+    color: #fff
+}
+/* 当前对话列表  end */
+
+/* 聊天信息 */
+.chat-msg-record>li{
+    list-style: none;
+    width: 100%;
+    clear: both;
+    padding: 10px;
 }
 
 .content-wrapper{
@@ -43,3 +108,95 @@
 .form-control{
     font-size: 12px;
 }
+
+.chat-msg>li{
+    list-style: none;
+    width: 100%;
+    clear: both;
+    padding: 10px;
+}
+
+.leftSide{
+    width: 50%;
+    float: left;
+}
+
+
+.rightSide{
+    width: 50%;
+    float: right;
+}
+
+
+
+.chat-info {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  padding: 0 15px 0 5px;
+}
+.chat-name {
+  font-weight: 600;
+}
+.chat-time {
+  color: #999;
+}
+
+.chat-img {
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+
+.chat-text {
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 10px;
+    background: #3C8DBC;
+    border: 1px solid #3C8DBC;
+    margin: 5px 0 0 10px;
+    color: #444444;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.chat-text:after,
+.chat-text:before {
+  position: absolute;
+  right: 100%;
+  top: 15px;
+  border: solid transparent;
+  border-right-color: #3C8DBC;
+  content: ' ';
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+.chat-text:after {
+  border-width: 5px;
+  margin-top: -5px;
+}
+.chat-text:before {
+  border-width: 6px;
+  margin-top: -6px;
+}
+.rightSide .chat-text {
+  background: #84D319;
+  border: 1px solid #84D319;
+  margin-right: 10px;
+  margin-left: 0;
+}
+.rightSide .chat-text:after,
+.rightSide .chat-text:before {
+  right: auto;
+  left: 100%;
+  border-right-color: transparent;
+  border-left-color: #84D319;
+}
+.rightSide .chat-img {
+  float: right;
+}
+/* 聊天信息 end */
+
+

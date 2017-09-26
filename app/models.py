@@ -2,12 +2,12 @@ from .tools import get_dict
 import  pymongo
 from bson import ObjectId
 
-conn = pymongo.Connection('localhost', 27017)
+#conn = pymongo.Connection('localhost', 27017)
 
-db = conn.chat
+#db = conn.chat
 
 class User():
-    user = db.user
+    user = None
     def __init__(self,id,name):
         self.id = id
         self.name = name
@@ -23,7 +23,7 @@ class User():
 
 class Kf():
 
-    kf = db.kf
+    kf = None
 
     def __init__(self,id,name):
         self.name = name

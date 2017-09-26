@@ -1,66 +1,422 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-    <div class="row">
-        <div style="height: 300px;border: 1px solid #ccc">
+<div class="talkContent">
+
+    {#  即时消息滚动  #}
+    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;" id="talk-top">
+        <div class="row" style="width: 100%;">
+            <div class="col-md-2 border">用户</div>
+            <div class="col-md-8 border">即时消息内容</div>
+            <div class="col-md-2 border">时间</div>
+        </div>
+
+        <div class="msgList">
 
         </div>
     </div>
-  <div class="row">
-
-    <div class="col-md-3">
-
-        <div class="panel panel-default">
-            <div class="panel-heading">用户列表</div>
-
-              <ul class="chat-user-list">
-
-                <li class="active">
-                  <a href="#">
-                     <span>暂无任何用户</span>
-                  </a>
-                </li>
-
-              </ul>
+    <div class="row" style="height: 75%;" id="talk-center">
+        {#  上下伸展 分割块  #}
+        <div style="height: 3%;text-align:center;" id="talk-split">
+                <i class="fa fa-sort-up"></i>
         </div>
+        <div style="height: 97%">
+            {#  左 标签页  #}
+            <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
+               <div>
+                    <ul id="leftTab" class="nav nav-tabs" >
+                        <li class="active" style="width: 50%"><a href="#talkList" data-toggle="tab">对话列表</a></li>
+                        <li style="width: 50%"><a href="#kfList" data-toggle="tab">客服</a></li>
+                    </ul>
+               </div>
+                <div id="leftTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="talkList">
+                        <ul class="chat-user-list">
 
-    </div>
+                            <li class="active">
+                                <a href="#">
+                                  <span>暂无任何用户</span>
+                                 </a>
+                            </li>
 
-
-    <div class="col-md-9">
-
-        <div class="row" style="border: 1px solid #ccc;">
-            <div class="panel panel-default">
-                <div class="panel-heading">聊天中...</div>
-                <div class="panel-body" style="padding:15px 15px 0px 15px">
-                    <div class="msgContent" style="border: 1px solid #ccc;width: auto;height: 280px;overflow-y:scroll;">
-
+                        </ul>
                     </div>
-                    <div class="tools" style="padding: 20px;">
-                    </div>
-                    <div class="form-inline" style="border: 1px solid #ccc">
-                        <textarea  rows="5" id="inputContent" style="width: 100%;resize: none;border-style: none">
-
-                        </textarea>
+                    <div class="tab-pane fade" id="kfList">
+                        <div id="kfTree"></div>
                     </div>
                 </div>
-                    <button type="button" class="btn btn-primary" onclick="send('{{ kf.id }}','{{ kf.name }}')" style="margin:15px;float: right" >发送</button>
             </div>
 
+            {#  中间 聊天内容 显示  #}
+            <div class="talk-room" style="float:left;width: 50%;height:100%;border: 1px solid #ccc">
 
+                <div  style="height: 6%;text-align:center;padding-top: 10px;">用户XXX</div>
+                <div  style="height: 94%;">
+                    <div class="showContent" style="height: 75%;min-height:150px;overflow-y:auto;border: 1px solid #ccc">
+                        <ul class="chat-msg" style="padding: 0px;">
+                        </ul>
+                    </div>
+                    <div class="tools" style="height: 5%;border: 1px solid #ccc">
+                    </div>
+                    <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">
+                        <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            {#  右标签页 #}
+            <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
+            <div >
+                <ul id="rightTab" class="nav nav-tabs">
+                    <li class="active" style="width: 50%"><a href="#common" data-toggle="tab">常用语</a></li>
+                    <li style="width: 50%" ><a href="#record"  data-toggle="tab">聊天记录</a></li>
+                </ul>
+            </div>
+            <div id="rightTabContent" class="tab-content">
+                {# 常用语 #}
+                <div class="tab-pane fade in active" id="common">
+                    <div id="tree"></div>
+                    <div style="width: 29%;position: absolute;bottom: 2px;">
+                        <div class="row"   >
+                            <div class="col-md-4">
+                                <div class="dropup">
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                            <i class="fa fa-plus"></i>添加<b class="caret"></b>
+                                        </button>
+                                        <ul class="dropdown-menu" style="border: 1px solid #ccc">
+                                             <li style="text-align: center"><a href="#" data-toggle="modal" id="addCommonLanguageGroup" data-target="#addCommonLanguageGroupModal">常用语组</a></li>
+                                             <li style="text-align: center"><a href="#" data-toggle="modal" id="addCommonLanguage" data-target="#addCommonLanguageModal">常用语</a></li>
+                                        </ul>
+                                    </div>
+                            </div>
+                             <div class="col-md-4">
+                                 <a type="button" class="btn btn-default" id="update"><i class="fa fa-edit"></i>修改</a>
+                             </div>
+                             <div class="col-md-4">
+                                 <a type="button" class="btn btn-default" id="remove"><i class="fa fa-remove"></i>删除</a>
+                             </div>
+
+                        </div>
+                    </div>
+                </div>
+                {# 聊天记录 #}
+                <div class="tab-pane fade" id="record">
+                    <div class="showRecordContent" style="height: 100%;min-height:150px;overflow-y:auto;">
+                        <ul class="chat-msg-record" style="padding: 0px;">
+                            <li>
+                                <div class="leftSide" style="width: 45%;">
+                                    <div class="chat-info clearfix" style="width: auto;">
+                                        <span class="chat-name pull-left">张三</span>
+                                    </div>
+                                    <div class="clearfix" style="width: 100%;">
+                                        <img class="chat-img" src="../static/img/favicon.ico" alt="">
+                                        <div style="width: 150px;float: left;">
+                                        <div class="chat-text" style="width:auto;float: left;">
+                                            你好啊
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="rightSide" style="width: 45%;">
+                                    <div class="chat-info clearfix" style="width: auto;">
+                                        <span class="chat-name pull-right">我</span>
+                                    </div>
+                                    <div class="clearfix" style="width: 100%;">
+                                        <img class="chat-img" src="../static/img/favicon.ico" alt="">
+                                        <div style="width: 150px;float: right;">
+                                        <div class="chat-text" style="width:auto;float: right;">
+                                            弄啥嘞？
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
+        </div>
     </div>
+</div>
 
-  </div>
 
-<script src="{{ url_for('static',filename='js/jquery-1.8.1.min.js') }}"></script>
+
+<!-- 常用语组 增加/修改 （Modal） -->
+<div class="modal fade" id="addCommonLanguageGroupModal" tabindex="-1" role="dialog" aria-labelledby="commonLanguageGroupModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="commonLanguageGroupModalLabel">
+					添加常用语分组信息
+				</h4>
+			</div>
+			<div class="modal-body">
+                    <span>常用语分类（20字以内）</span>
+                    <input type="text" class="form-control" id="commonLanguageGroupText">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 常用语组 增加/修改 （Modal）END -->
+
+
+<!-- 常用语 增加/修改 （Modal） -->
+<div class="modal fade" id="addCommonLanguageModal" tabindex="-1" role="dialog" aria-labelledby="commonLanguageModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="commonLanguageModalLabel">
+					添加常用语
+				</h4>
+			</div>
+			<div class="modal-body">
+                <div class="form-group">
+                    <label>所属分类：</label>
+                    <select class="combobox form-control" id="commonLanguageGroupSelect">
+                          <option value="1">默认分组</option>
+                          <option value="2">自定义1</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <span>常用语标题：</span>
+                    <input type="text" class="form-control" placeholder="标题" id="commonLanguageTitle">
+                </div>
+
+                <div class="form-group">
+                    <span>常用语内容：</span>
+                     <textarea class="form-control" rows="5" placeholder="内容" id="commonLanguageContent" style="resize: none;"></textarea>
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">提交更改</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 常用语 增加/修改 （Modal） END -->
+
+<script src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ url_for('static',filename='js/talk.js') }}"></script>
-<script>
+<script src="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.js') }}"></script>
 
-    //开启获取回复任务
-    startGetReplyTask('{{ kf.id }}')
+<script>
+    //获取窗口高度 并设置内容界面高度
+    bodyHeight = $(document.body).height()
+    $('.talkContent').css('height',bodyHeight-50)
+    $(window).resize(function() {
+    var height = $(this).height();
+      $('.talkContent').css('height',height-50)
+    });
+
+
+    //内容输入初始化
+    $('#inputContent').val('')
+
+    //左标签页
+    $('#leftTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+    //右标签页
+    $('#rightTab a').click(function (e) {
+         e.preventDefault()
+         $(this).tab('show')
+    });
+
+    //开启回复轮询
+    //  startGetReplyTask('{{ kf.id }}')
+
+     //获取常用语树内容
+     function getTree() {
+         var treeContent ;
+         //同步加载
+         $.ajax({
+            url : '{{ url_for('static',filename='js/tree.json') }}',
+            type : "GET",
+            async: false,
+            dataType:'json',
+            success : function (result){
+                treeContent = result.tree;
+            }
+          });
+         return treeContent;
+    }
+
+    //初始化常用语树
+    $('#tree').treeview({data: getTree()});
+    $tree = $('#tree');
+
+    $tree.on('nodeSelected', function(event, node) {
+        if(node.value != undefined){
+            $('#inputContent').val(node.value);
+            $('#inputContent').focus();
+        }
+    });
+
+
+    //获取客服对话列表树内容
+     function getKfTree() {
+         var treeContent ;
+         //同步加载
+         $.ajax({
+            url : '{{ url_for('static',filename='js/kfTree.json') }}',
+            type : "GET",
+            async: false,
+            dataType:'json',
+            success : function (result){
+                treeContent = result.kfTree;
+            }
+          });
+         return treeContent;
+    }
+    //初始化客服对话列表树
+    $('#kfTree').treeview({data: getKfTree()});
+    $kfTree = $('#kfTree');
+
+    $kfTree.on('nodeSelected', function(event, node) {
+        alert(node.id );
+    });
+
+     //获取最新访客消息
+     $.ajax({
+            url : '{{ url_for('static',filename='js/msg.json') }}',
+            type : "GET",
+            dataType:'json',
+            success : function (result){
+                  $.each( result.msg, function(index, o)
+                  {
+                          _html = '<div class="row"> \
+                                    <div class="col-md-2">'+o.name+'</div>\
+                                    <div class="col-md-8">'+o.content+'</div>\
+                                    <div class="col-md-2">'+o.time+'</div>  \
+                               </div>';
+                          $('.msgList').append(_html)
+                          $('.msgList').scrollTop( $('.msgList')[0].scrollHeight);
+
+                  });
+
+            }
+     });
+
+     //添加常用语分组 按钮点击事件 --  显示模态框
+     $('#addCommonLanguageGroup').on('click',function () {
+        $('#commonLanguageGroupText').val('');
+     });
+     //添加常用语 按钮点击事件 --  显示模态框
+     $('#addCommonLanguage').on('click',function () {
+        $('#commonLanguageGroupSelect').find("option[value = '"+1+"']").attr("selected","selected");
+        $('#commonLanguageTitle').val('')
+        $('#commonLanguageContent').val('')
+     });
+     //修改按钮点击事件 --显示模态框
+     $('#update').on('click',function () {
+
+       var arr = $tree.treeview('getSelected');
+       if(arr.length === 0 ){
+           Alert('请选中要修改的内容')
+           return;
+       }
+       if(arr[0].pId === '99' || arr[0].id === '99'){
+           Alert("公共常用语您没有修改权限");
+           return;
+       }
+        if(arr[0].nodes){
+            $('#commonLanguageGroupText').val(arr[0].text);
+            $('#addCommonLanguageGroupModal').modal();
+        }else{
+            $('#commonLanguageGroupSelect').find("option[value = '"+arr[0].pId+"']").attr("selected","selected");
+            $('#commonLanguageTitle').val(arr[0].text);
+            $('#commonLanguageContent').val(arr[0].value);
+            $('#addCommonLanguageModal').modal();
+        }
+
+     });
+
+     //删除按钮点击事件
+     $('#remove').on('click',function () {
+        var arr = $tree.treeview('getSelected');
+        if(arr.length === 0 ){
+           Alert('请选中要删除的内容')
+           return;
+        }
+        if(arr[0].pId === '99' || arr[0].id === '99'){
+           Alert("公共常用语您没有删除权限");
+           return;
+       }
+        var deferred = $.Deferred();
+        if(arr[0].nodes){
+
+             Confirm({
+                msg: '您确定要删除此项内容吗？删除它会将连它的子节点也一起删除',
+                onOk: function(){
+                    alert('确定删除')
+                },
+                onCancel: function(){
+                    deferred.reject();
+                }
+             });
+        }else{
+            Confirm({
+                msg: "您确定要删除吗？",
+                onOk: function(){
+                     alert('确定删除')
+                },
+                onCancel: function(){
+                    deferred.reject();
+                }
+             });
+        }
+     });
+
+
+     var flag = true
+     //分隔行按钮点击事件
+     $('#talk-split').on('click',function () {
+         h = bodyHeight-52
+         if(flag) {
+             $("#talk-top").animate({height: '0px'});
+             $("#talk-top").hide();
+             $("#talk-center").animate({height: h});
+             $("#talk-split i").removeClass('fa-sort-up').addClass('fa-sort-down')
+             flag = false;
+         }else{
+              $("#talk-top").animate({height: h*0.25});
+              $("#talk-top").show();
+              $("#talk-center").animate({height: h*0.75});
+              $("#talk-split i").removeClass('fa-sort-down').addClass('fa-sort-up')
+              flag = true;
+         }
+     });
+
+    //绑定Enter事件
+    $('#inputContent').bind('keyup', function(event) {
+        if (event.ctrlKey && event.keyCode == 13) {
+            event.preventDefault();
+            content = $('#inputContent').val()+'\n'
+            $('#inputContent').val(content)
+        }else if (event.keyCode == 13){
+            event.preventDefault();
+            send('{{ kf.id }}','{{ kf.name }}')
+        }
+    });
+
+
 
 </script>
 
