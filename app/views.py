@@ -12,7 +12,7 @@ onlineUsers = {}
 onlineKfs = {}
 
 @app.route('/talk')
-def go():
+def toTalk():
 
     id = get_uuid()
     kf = Kf(id, u'客服一')
