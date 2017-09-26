@@ -67,7 +67,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{ url_for('static',filename='adminLTE/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ session['currentUser'].name }}</span>
+              <span class="hidden-xs">客服一</span>
             </a>
           </li>
           <!-- Control Sidebar Toggle Button -->
@@ -88,12 +88,12 @@
         <li class="header">菜单</li>
 
         <li class="active">
-          <a href="talk">
+          <a href="{{ url_for('toPassword') }}">
             <i class="fa fa-comments"></i> <span>当前会话</span>
           </a>
         </li>
         <li>
-          <a href="kf">
+          <a href="{{ url_for('toKf') }}">
             <i class="fa fa-users"></i> <span>客服管理</span>
           </a>
         </li>
@@ -105,8 +105,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user"><i class="fa fa-circle-o"></i>修改个人信息</a></li>
-            <li><a href="password"><i class="fa fa-circle-o"></i>修改密码</a></li>
+            <li><a href="{{ url_for('toUser') }}"><i class="fa fa-circle-o"></i>修改个人信息</a></li>
+            <li><a href="{{ url_for('toPassword') }}"><i class="fa fa-circle-o"></i>修改密码</a></li>
           </ul>
         </li>
 
