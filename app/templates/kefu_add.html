@@ -10,7 +10,7 @@
             新增客服
         </div>
     </div>
-    <form class="form-horizontal kefu-form">
+    <form class="form-horizontal kefu-form registerform">
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">账号*</label>
@@ -51,7 +51,7 @@
                   <label for="inputPassword" class="col-sm-2 control-label">初始密码*</label>
 
                   <div class="col-sm-6">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="请输入6到16个字符">
+                    <input type="text" class="form-control" datatype="*6-16" errormsg="请输入6到16个字符" id="inputPassword" placeholder="请输入6到16个字符"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -83,5 +83,66 @@
               </div>
               <!-- /.box-footer -->
             </form>
+    <script src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/Validform_v5.3.2.js') }}"></script>
 
+{#    <script type="text/javascript">#}
+{#        $(".demoform").Validform();#}
+{#    </script>#}
+
+    <script type="text/javascript">
+{#$(function(){#}
+	//$(".registerform").Validform();  //就这一行代码！;
+
+	var demo=$(".registerform").Validform({
+		tiptype:3,
+		label:".label",
+		showAllError:true,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		ajaxPost:true
+	});
+
+	//通过$.Tipmsg扩展默认提示信息;
+	//$.Tipmsg.w["zh1-6"]="请输入1到6个中文字符！";
+	demo.tipmsg.w["zh1-6"]="请输入1到6个中文字符！";
+
+	demo.addRule([{
+		ele:".inputxt:eq(0)",
+		datatype:"zh2-4"
+	},
+	{
+		ele:".inputxt:eq(1)",
+		datatype:"*6-20"
+	},
+	{
+		ele:".inputxt:eq(2)",
+		datatype:"*6-20",
+		recheck:"userpassword"
+	},
+	{
+		ele:"select",
+		datatype:"*"
+	},
+	{
+		ele:":radio:first",
+		datatype:"*"
+	},
+	{
+		ele:":checkbox:first",
+		datatype:"*"
+	}]);
+
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-81001026-1', 'auto');
+  ga('send', 'pageview');
+</script>
 {% endblock %}

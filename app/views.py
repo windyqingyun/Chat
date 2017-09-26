@@ -22,6 +22,10 @@ def go():
 
     return render_template('talk.html', kf=kf)
 
+@app.route('/test')
+def test():
+    return render_template('kefu_role.html')
+
 @app.route('/kf')
 def toKf():
     # getAllKf()
