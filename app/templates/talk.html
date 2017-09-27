@@ -4,7 +4,7 @@
 <div class="talkContent">
 
     {#  即时消息滚动  #}
-    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 24.5%;" id="talk-top">
+    <div class="row" style="padding-left:15px;border: 3px solid #ccc;height: 25%;" id="talk-top">
         <div class="row" style="width: 100%;">
             <div class="col-md-2 border">用户</div>
             <div class="col-md-8 border">即时消息内容</div>
@@ -15,57 +15,61 @@
 
         </div>
     </div>
-    <div class="row" style="height: 75%;" id="talk-center">
-        {#  上下伸展 分割块  #}
-        <div style="height: 3%;text-align:center;" id="talk-split">
-                <i class="fa fa-sort-up"></i>
-        </div>
-        <div style="height: 97%">
-            {#  左 标签页  #}
-            <div class="talk-left" style="padding-left:15px;float:left;width: 20%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
-               <div>
-                    <ul id="leftTab" class="nav nav-tabs" >
-                        <li class="active" style="width: 50%"><a href="#talkList" data-toggle="tab">对话列表</a></li>
-                        <li style="width: 50%"><a href="#kfList" data-toggle="tab">客服</a></li>
+
+    {#  上下伸展 分割块  #}
+    <div class="row" style="height: 2%;text-align:center;" id="talk-split">
+            <i class="fa fa-sort-up"></i>
+    </div>
+    <div class="row" style="height: 73%;" id="talk-center">
+        {#  左 标签页  #}
+        <div class="talk-left col-md-2 border" style="padding: 0 0 0 15px;height:100%;min-height:242px;overflow-y: auto">
+           <div>
+                <ul id="leftTab" class="nav nav-tabs" >
+                    <li class="active" style="width: 50%"><a href="#talkList" data-toggle="tab">对话列表</a></li>
+                    <li style="width: 50%"><a href="#kfList" data-toggle="tab">客服</a></li>
+                </ul>
+           </div>
+            <div id="leftTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="talkList">
+                    <ul class="chat-user-list">
+
+                        <li class="active">
+                            <a href="#">
+                              <span>暂无任何用户</span>
+                             </a>
+                        </li>
+
                     </ul>
-               </div>
-                <div id="leftTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="talkList">
-                        <ul class="chat-user-list">
-
-                            <li class="active">
-                                <a href="#">
-                                  <span>暂无任何用户</span>
-                                 </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="tab-pane fade" id="kfList">
-                        <div id="kfTree"></div>
-                    </div>
+                </div>
+                <div class="tab-pane fade" id="kfList">
+                    <div id="kfTree"></div>
                 </div>
             </div>
+        </div>
 
-            {#  中间 聊天内容 显示  #}
-            <div class="talk-room" style="float:left;width: 50%;height:100%;border: 1px solid #ccc">
+        {#  中间 聊天内容 显示  #}
+        <div class="talk-room col-md-7 border" style="padding: 0;height:100%;">
 
-                <div  style="height: 6%;text-align:center;padding-top: 10px;">用户XXX</div>
-                <div  style="height: 94%;">
-                    <div class="showContent" style="height: 75%;min-height:150px;overflow-y:auto;border: 1px solid #ccc">
-                        <ul class="chat-msg" style="padding: 0px;">
-                        </ul>
-                    </div>
-                    <div class="tools" style="height: 5%;border: 1px solid #ccc">
-                    </div>
-                    <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">
-                        <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none"></textarea>
-                    </div>
-                </div>
+            <div style="height: 6%;padding-top: 10px;text-align: center;">
+                用户XXX
+    {#                    <div class="col-md-3"><button class="btn btn-default">转接</button></div>#}
             </div>
+            <div style="height: 94%;">
+                <div class="showContent border" style="height: 75%;min-height:150px;overflow-y:auto;">
+                    <ul class="chat-msg" style="padding: 0px;">
+                    </ul>
+                </div>
+{#                <div class="tools" style="height: 5%;border: 1px solid #ccc">#}
+{#                </div>#}
+{#                <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">#}
+{#                    <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none"></textarea>#}
+{#                </div>#}
+                <div id="editor" style="width:100%;height:25%;" ></div>
+            </div>
+        </div>
 
-            {#  右标签页 #}
-            <div class="talk-right" style="float:left;width: 29%;height:100%;min-height:242px;border: 1px solid #ccc;overflow-y: auto">
+        {#  右标签页 #}
+        <div class="talk-right col-md-3 border" style="padding: 0;height:100%;min-height:242px;overflow-y: auto">
             <div >
                 <ul id="rightTab" class="nav nav-tabs">
                     <li class="active" style="width: 50%"><a href="#common" data-toggle="tab">常用语</a></li>
@@ -76,8 +80,8 @@
                 {# 常用语 #}
                 <div class="tab-pane fade in active" id="common">
                     <div id="tree"></div>
-                    <div style="width: 29%;position: absolute;bottom: 2px;">
-                        <div class="row"   >
+                    <div style="width:100%;position: absolute;bottom: 2px;">
+                        <div class="row" style="width: 100%"  >
                             <div class="col-md-4">
                                 <div class="dropup">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
@@ -138,7 +142,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -214,6 +217,9 @@
 <script src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ url_for('static',filename='js/talk.js') }}"></script>
 <script src="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ url_for('static',filename='ueditor/ueditor.config.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ url_for('static',filename='ueditor/ueditor.all.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ url_for('static',filename='ueditor/lang/zh-cn/zh-cn.js') }}"></script>
 
 <script>
     //获取窗口高度 并设置内容界面高度
@@ -222,6 +228,23 @@
     $(window).resize(function() {
     var height = $(this).height();
       $('.talkContent').css('height',height-50)
+    });
+
+    var ue =  UE.getEditor('editor',{
+        //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+        toolbars:[['emotion', 'simpleupload', 'snapscreen']],
+        //focus时自动清空初始化时的内容
+        autoClearinitialContent:true,
+        //关闭字数统计
+        wordCount:false,
+        //关闭elementPath
+        elementPathEnabled:false,
+        //默认的编辑区域高度
+        initialFrameHeight:100,
+        enableAutoSave: false,
+        autoHeightEnabled:false,
+        serverUrl: "/upload/",
+        focus:true
     });
 
 
@@ -264,8 +287,8 @@
 
     $tree.on('nodeSelected', function(event, node) {
         if(node.value != undefined){
-            $('#inputContent').val(node.value);
-            $('#inputContent').focus();
+            UE.getEditor('editor').setContent(node.value);
+            UE.getEditor('editor').focus(true);
         }
     });
 
@@ -388,33 +411,35 @@
      var flag = true
      //分隔行按钮点击事件
      $('#talk-split').on('click',function () {
-         h = bodyHeight-52
+         h = bodyHeight-50
          if(flag) {
-             $("#talk-top").animate({height: '0px'});
+           //  $("#talk-top").animate({height: '-20px'});
+
+             $("#talk-center").animate({height: h*0.98});
              $("#talk-top").hide();
-             $("#talk-center").animate({height: h});
              $("#talk-split i").removeClass('fa-sort-up').addClass('fa-sort-down')
              flag = false;
          }else{
-              $("#talk-top").animate({height: h*0.25});
+           //   $("#talk-top").animate({height: h*0.25});
+
+              $("#talk-center").animate({height: h*0.73});
               $("#talk-top").show();
-              $("#talk-center").animate({height: h*0.75});
               $("#talk-split i").removeClass('fa-sort-down').addClass('fa-sort-up')
               flag = true;
          }
      });
 
-    //绑定Enter事件
-    $('#inputContent').bind('keyup', function(event) {
-        if (event.ctrlKey && event.keyCode == 13) {
-            event.preventDefault();
-            content = $('#inputContent').val()+'\n'
-            $('#inputContent').val(content)
-        }else if (event.keyCode == 13){
-            event.preventDefault();
-            send('{{ kf.id }}','{{ kf.name }}')
-        }
-    });
+{#    //绑定Enter事件#}
+{#    $('#editor').bind('keyup', function(event) {#}
+{#        if (event.ctrlKey && event.keyCode == 13) {#}
+{#            event.preventDefault();#}
+{#            ue.setContent("\n",true)#}
+{#        }else if (event.keyCode == 13){#}
+{#            event.preventDefault();#}
+{#            send('{{ kf.id }}','{{ kf.name }}')#}
+{#        }#}
+{#    });#}
+
 
 
 

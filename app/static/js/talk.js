@@ -45,7 +45,7 @@ function  startGetReplyTask(kfId) {
                     $('.chat-user-list li').on('click',function (){
 
                         $(this).addClass("active").siblings().removeClass("active");
-                        $('#inputContent').val('')
+                        UE.getEditor('editor').setContent('');
                         $('.showContent').empty()
                         currentActive = $('.chat-user-list li.active').attr('id');
 
@@ -112,9 +112,10 @@ function  startGetReplyTask(kfId) {
 
 
 function send(kfId,kfName) {
-    var content = $('#inputContent').val()
+    var ue = UE.getEditor('editor')
+    var content = ue.getContent();
     //正则替换
-    content = content.replace(/\n/g,'<br/>')
+    // content = content.replace(/\n/g,'<br/>')
     // userId = $('.chat-user-list li.active').attr('id')
     userId = 's'
     if (content == ''){
@@ -151,7 +152,8 @@ function send(kfId,kfName) {
             async : true,
             type : "POST",
             success : function (result){
-                $('#inputContent').val('')
+                ue.setContent('');
+                ue.focus();
                 $('.showContent').scrollTop( $('.showContent')[0].scrollHeight);
             }
         });

@@ -11,4 +11,4 @@ def createApp():
     return app
 
 
-from . import  views,forms,models,tools
+from . import  views,forms,models,tools,uploader

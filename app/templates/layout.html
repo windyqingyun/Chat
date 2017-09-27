@@ -39,12 +39,12 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index" class="logo">
+    <span href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><img src="{{ url_for('static',filename='img/favicon.ico') }}"></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>亿凡星</b>客服管理</span>
-    </a>
+    </span>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -119,6 +119,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" >
     <!-- Main content -->
+
     {% block page_content %}
 
     {% endblock %}

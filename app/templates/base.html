@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>客服管理系统</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/talk.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-      <script type="text/javascript" src="{{ url_for('static',filename='jquery-1.8.1.min.js') }}"></script>
-    {% block js %}
-    {% endblock %}
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
 
-{%- block content -%}{%- endblock -%}
+<body >
+
+{%- block page_content -%}{%- endblock -%}
+
+
+<!-- jQuery 3 -->
+<script src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/dialog.js') }}"></script>
+
+
+<script src="{{ url_for('static',filename='bootstrap-treeview/dist/bootstrap-treeview.min.js') }}"></script>
+
 </body>
-</html>
