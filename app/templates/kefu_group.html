@@ -13,10 +13,19 @@
         <div class="col-md-4">
             <div class="group border" style="height:150px;width: 90%">
                 <div class="group-head clearfix " style="padding: 3px 5px;">
-                    <span class="group-name">组一<em>(0人)</em></span>
-                    <div class="group-tool pull-right" padding="0">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash"></i>
+                    <div class="showing" >
+                        <span class="group-name"><strong>组一</strong><em>(0人)</em></span>
+                        <div class="group-tool pull-right " >
+                            <i class="fa fa-edit "></i>
+                            <i class="fa fa-trash"></i>
+                        </div>
+                    </div>
+                    <div class="editing" style="display: none;">
+                        <input class="group-name-input  form-control pull-left" style="width: 80%">
+                        <div class="group-tool pull-right " >
+                            <i class="fa fa-check-circle "></i>
+                            <i class="fa fa-times-circle"></i>
+                        </div>
                     </div>
                 </div>
 
@@ -33,52 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="group border" style="height:150px;width: 90%">
-                <div class="group-head clearfix " style="padding: 3px 5px;">
-                    <span class="group-name">组一<em>(0人)</em></span>
-                    <div class="group-tool pull-right" padding="0">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash"></i>
-                    </div>
-                </div>
 
-                <div class="group-center">
-                    <div class="add-group-btn" style="text-align: center;padding: 50px 0 ;">
-                         <em><i class="fa fa-plus"></i></em><em>添加组员</em>
-                    </div>
-                    <div class="group-member-text" style="text-align: left;display: none">
-                        客服一
-                    </div>
-                    <div class="group-edit-member" style="display: none;text-align: right">
-                        <button class="btn btn-default" >编辑组员</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="group border" style="height:150px;width: 90%">
-                <div class="group-head clearfix " style="padding: 3px 5px;">
-                    <span class="group-name">组一<em>(0人)</em></span>
-                    <div class="group-tool pull-right" padding="0">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash"></i>
-                    </div>
-                </div>
-
-                <div class="group-center">
-                    <div class="add-group-btn" style="text-align: center;padding: 50px 0 ;">
-                        <em><i class="fa fa-plus"></i></em><em>添加组员</em>
-                    </div>
-                    <div class="group-member-text" style="text-align: left;display: none">
-                        客服一
-                    </div>
-                    <div class="group-edit-member" style="display: none;text-align: right">
-                        <button class="btn btn-default" >编辑组员</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -123,5 +87,31 @@
             $('#addKefuGroupModal').modal()
         });
 
+
+        $('.group-tool .fa-edit').on('click',function () {
+           var showing = $(this).parent('div').parent('div');
+           showing.hide();
+           var oldName = $(this).parent('div').prev('span').children('strong').text();
+           showing.next('div').children('input').val(oldName)
+           showing.next('div').children('input').focus();
+           showing.next('div').show()
+
+           //var oldName =  span.children('strong').text()
+          // var oldNumber = span.children('em').text()
+
+        });
+         $('.group-tool .fa-check-circle').on('click',function () {
+           var par = $(this).parent('div').parent('div')
+            par.hide();
+            par.prev('div').show();
+            var newName = $(this).parent('div').prev('input').val();
+            par.prev('div').children('span').children('strong').text(newName);
+        });
+
+         $('.group-tool .fa-times-circle').on('click',function () {
+           var par = $(this).parent('div').parent('div')
+            par.hide();
+            par.prev('div').show();
+        });
     </script>
 {% endblock kefu_js%}
