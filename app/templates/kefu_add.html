@@ -12,25 +12,25 @@
     </div>
     <form class="form-horizontal kefu-form registerform">
               <div class="box-body">
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 0">
                   <label for="inputEmail3" class="col-sm-2 control-label">账号*</label>
 
                   <div class="col-sm-6">
-                    <input type="email" class="form-control" id="inputAccount" placeholder="须为字母或数字，用于登录和密码找回">
+                    <input type="text" class="form-control" datatype="*1-20" errormsg="请输入1到20个字符" id="inputAccount" placeholder="须为字母或数字，用于登录和密码找回">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 0">
                   <label for="inputName" class="col-sm-2 control-label">姓名*</label>
 
                   <div class="col-sm-6">
-                    <input type="password" class="form-control" id="inputName" placeholder="用于报表和历史回话的显示">
+                    <input type="password" class="form-control" datatype="*1-20" errormsg="请输入1到20个字符" id="inputName" placeholder="用于报表和历史回话的显示">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 0">
                   <label for="inputNickname" class="col-sm-2 control-label">昵称*</label>
 
                   <div class="col-sm-6">
-                    <input type="password" class="form-control" id="inputNickname" placeholder="用于访客端聊天窗口的显示">
+                    <input type="password" class="form-control" datatype="*1-20" errormsg="请输入1到20个字符" id="inputNickname" placeholder="用于访客端聊天窗口的显示">
                   </div>
                 </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                     <input type="email" class="form-control" id="inputEmail" placeholder="请输入邮箱地址">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group"  style="margin-bottom: 0">
                   <label for="inputPassword" class="col-sm-2 control-label">初始密码*</label>
 
                   <div class="col-sm-6">
@@ -122,7 +122,7 @@
 		recheck:"userpassword"
 	},
 	{
-		ele:"select",
+		ele:"vselect",
 		datatype:"*"
 	},
 	{

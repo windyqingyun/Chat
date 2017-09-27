@@ -1,9 +1,11 @@
 {% extends 'kf.html' %}
 {% block content %}
-    group
-
-
-
+    <div class="row">
+        <div class="pull-right">
+            <a type="button" href='{{ url_for('kfEdit') }}' class="btn btn-primary btn-sm">新增分组
+            </a>
+        </div>
+    </div>
 
 {% endblock %}
 {% block kefu_js %}
