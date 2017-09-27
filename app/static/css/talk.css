@@ -86,29 +86,6 @@ table thead th{ background: #e2e3e3;}
     padding: 10px;
 }
 
-.content-wrapper{
-    background-color: #ffffff;
-}
-.kefu-edit{
-    padding-left: 20px;
-    padding-top: 20px;
-    background-color: #ffffff;
-}
-.breadcrumb{
-    background-color: #ffffff;
-    font-size: 10px;
-    padding: 0 ;
-}
-.kefu-form{
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 12px;
-    border-top: 1px solid #ccc;
-}
-.form-control{
-    font-size: 12px;
-}
-
 .chat-msg>li{
     list-style: none;
     width: 100%;
@@ -199,4 +176,42 @@ table thead th{ background: #e2e3e3;}
 }
 /* 聊天信息 end */
 
+/* 客服 */
+
+.content-wrapper{
+    background-color: #ffffff;
+}
+.kefu-edit{
+    padding-left: 20px;
+    padding-top: 20px;
+    background-color: #ffffff;
+}
+.breadcrumb{
+    background-color: #ffffff;
+    font-size: 10px;
+    padding: 0 ;
+}
+.kefu-form{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 12px;
+    border-top: 1px solid #ccc;
+}
+.form-control{
+    font-size: 12px;
+}
+
+/* 客服 END */
+
+/* 客服分组 */
+.group-tool{
+    color: #fff;
+}
+.group-tool i{
+    padding: 0 5px;
+}
+.group-tool:hover{
+    color: #919191;
+}
+/* 客服分组 END */
 

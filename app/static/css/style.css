@@ -12,6 +12,7 @@ sup{vertical-align:text-top;}
 sub{vertical-align:text-bottom;}
 del{color:#686868;}
 table{border-collapse:collapse; border-spacing:0;}
+em{color: #919191;padding: 0 5px;}
 /* for font & text & tag =================================== */
 .red{
 	color:red!important;

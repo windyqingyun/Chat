@@ -2,16 +2,126 @@
 {% block content %}
     <div class="row">
         <div class="pull-right">
-            <a type="button" href='{{ url_for('kfEdit') }}' class="btn btn-primary btn-sm">新增分组
-            </a>
+            <button  class="btn btn-primary btn-sm" id="addGroupBtn">新增分组</button>
         </div>
     </div>
 
+    <div class="divider"></div>
+
+    <div class="row" style="margin: 50px 20px;font-size: 12pt">
+
+        <div class="col-md-4">
+            <div class="group border" style="height:150px;width: 90%">
+                <div class="group-head clearfix " style="padding: 3px 5px;">
+                    <span class="group-name">组一<em>(0人)</em></span>
+                    <div class="group-tool pull-right" padding="0">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </div>
+
+                <div class="group-center">
+                    <div class="add-group-btn" style="text-align: center;padding: 50px 0 ;">
+                         <em><i class="fa fa-plus"></i></em><em>添加组员</em>
+                    </div>
+                    <div class="group-member-text" style="text-align: left;display: none">
+                        客服一
+                    </div>
+                    <div class="group-edit-member" style="display: none;text-align: right">
+                        <button class="btn btn-default" >编辑组员</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="group border" style="height:150px;width: 90%">
+                <div class="group-head clearfix " style="padding: 3px 5px;">
+                    <span class="group-name">组一<em>(0人)</em></span>
+                    <div class="group-tool pull-right" padding="0">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </div>
+
+                <div class="group-center">
+                    <div class="add-group-btn" style="text-align: center;padding: 50px 0 ;">
+                         <em><i class="fa fa-plus"></i></em><em>添加组员</em>
+                    </div>
+                    <div class="group-member-text" style="text-align: left;display: none">
+                        客服一
+                    </div>
+                    <div class="group-edit-member" style="display: none;text-align: right">
+                        <button class="btn btn-default" >编辑组员</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="group border" style="height:150px;width: 90%">
+                <div class="group-head clearfix " style="padding: 3px 5px;">
+                    <span class="group-name">组一<em>(0人)</em></span>
+                    <div class="group-tool pull-right" padding="0">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </div>
+
+                <div class="group-center">
+                    <div class="add-group-btn" style="text-align: center;padding: 50px 0 ;">
+                        <em><i class="fa fa-plus"></i></em><em>添加组员</em>
+                    </div>
+                    <div class="group-member-text" style="text-align: left;display: none">
+                        客服一
+                    </div>
+                    <div class="group-edit-member" style="display: none;text-align: right">
+                        <button class="btn btn-default" >编辑组员</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+<!-- 客服分组 增加/修改 （Modal） -->
+<div class="modal fade" id="addKefuGroupModal" tabindex="-1" role="dialog" aria-labelledby="kefuGroupModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="kefuGroupModalLabel">
+					新增分组
+				</h4>
+			</div>
+			<div class="modal-body">
+                    <span>组名</span>
+                    <input type="text" class="form-control" id="kefuGroupText">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 客服分组 增加/修改 （Modal） END -->
+<script src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+
 {% endblock %}
 {% block kefu_js %}
+
     <script type="text/javascript">
         $('li').removeClass('active');
         $('#group').addClass('active')
+
+        $('#addGroupBtn').on('click',function () {
+            $('#kefuGroupText').val('')
+            $('#addKefuGroupModal').modal()
+        });
 
     </script>
 {% endblock kefu_js%}
