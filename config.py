@@ -5,7 +5,7 @@ class Config(object):
 
 class ProdConfig(Config):
         '''Production config class.'''
-
+#ss
 class DevConfig(Config):
         '''Development config class. '''
         #Open the DEBUG
