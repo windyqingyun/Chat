@@ -64,7 +64,9 @@
 {#                <div class="writeContent" style="height: 20%;min-height:50px;border: 1px solid #ccc">#}
 {#                    <textarea  rows="5" placeholder="按Enter键发送信息" id="inputContent" style="width: 100%;height:100%;resize: none;border-style: none"></textarea>#}
 {#                </div>#}
-                <div id="editor" style="width:100%;height:25%;" ></div>
+                <div id="editor" style="width:100%;height:25%;" >
+
+                </div>
             </div>
         </div>
 
@@ -242,19 +244,17 @@
         //默认的编辑区域高度
         initialFrameHeight:100,
         enableAutoSave: false,
-        autoHeightEnabled:false,
         serverUrl: "/upload/",
-        focus:true
+        focus:false,
+        initialContent: "按Ctrl+Enter键发送消息"
     });
 
-
-    //内容输入初始化
-    $('#inputContent').val('')
 
     //左标签页
     $('#leftTab a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
+        ue.enable()
     });
     //右标签页
     $('#rightTab a').click(function (e) {
@@ -287,8 +287,8 @@
 
     $tree.on('nodeSelected', function(event, node) {
         if(node.value != undefined){
-            UE.getEditor('editor').setContent(node.value);
-            UE.getEditor('editor').focus(true);
+            ue.setContent(node.value);
+            ue.focus(true);
         }
     });
 
@@ -308,12 +308,13 @@
           });
          return treeContent;
     }
+
     //初始化客服对话列表树
     $('#kfTree').treeview({data: getKfTree()});
     $kfTree = $('#kfTree');
 
     $kfTree.on('nodeSelected', function(event, node) {
-        alert(node.id );
+        ue.disable();
     });
 
      //获取最新访客消息
@@ -382,7 +383,6 @@
            Alert("公共常用语您没有删除权限");
            return;
        }
-        var deferred = $.Deferred();
         if(arr[0].nodes){
 
              Confirm({
@@ -391,7 +391,7 @@
                     alert('确定删除')
                 },
                 onCancel: function(){
-                    deferred.reject();
+                     $.Deferred().reject();
                 }
              });
         }else{
@@ -401,31 +401,27 @@
                      alert('确定删除')
                 },
                 onCancel: function(){
-                    deferred.reject();
+                     $.Deferred().reject();
                 }
              });
         }
      });
 
 
-     var flag = true
+     var isExpand = false
      //分隔行按钮点击事件
      $('#talk-split').on('click',function () {
          h = bodyHeight-50
-         if(flag) {
-           //  $("#talk-top").animate({height: '-20px'});
-
+         if(!isExpand) {
              $("#talk-center").animate({height: h*0.98});
              $("#talk-top").hide();
              $("#talk-split i").removeClass('fa-sort-up').addClass('fa-sort-down')
-             flag = false;
+             isExpand = true;
          }else{
-           //   $("#talk-top").animate({height: h*0.25});
-
               $("#talk-center").animate({height: h*0.73});
               $("#talk-top").show();
               $("#talk-split i").removeClass('fa-sort-down').addClass('fa-sort-up')
-              flag = true;
+              isExpand = false;
          }
      });
 

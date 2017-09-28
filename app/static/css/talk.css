@@ -29,10 +29,6 @@ table thead th{ background: #e2e3e3;}
   float: left !important;
 }
 
-/*#talk-split :hover{*/
-    /*background: #000;*/
-/*}*/
-
 
 /* 即时消息 */
 
@@ -49,9 +45,6 @@ table thead th{ background: #e2e3e3;}
     padding: 5px 0;
 }
 
-.msgList>.row .active{
-    background: red;
-}
 /* 即时消息 end */
 
 
@@ -67,7 +60,10 @@ table thead th{ background: #e2e3e3;}
     position: relative;
     margin: 2px;
     padding: 10px;
-     color: #000;
+    color: #000;
+}
+.chat-user-list li a{
+    text-decoration: none;
 }
 
 .chat-user-list li.active {
@@ -205,7 +201,7 @@ table thead th{ background: #e2e3e3;}
 
 /* 客服分组 */
 .group-tool{
-    color: #fff;
+    color: #EAEAEA;
 }
 .group-tool i{
     padding: 0 5px;
@@ -213,5 +209,10 @@ table thead th{ background: #e2e3e3;}
 .group-tool:hover{
     color: #919191;
 }
+.group-check-tool i{
+    padding: 0 5px;
+}
+
+
 /* 客服分组 END */
 

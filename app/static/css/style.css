@@ -5,7 +5,7 @@ div{text-align:left;}
 h4,h3,h2,h1{font-size:14px; margin:0;}
 form,ul,ol,dl,dd,p{margin:0; padding:0;}
 li{list-style-type:none;}
-img{border:none; vertical-align:middle;}
+img{border:none; vertical-align:middle;max-width:100%;}
 button,input,select,textarea{font-size:1em;	margin:0; font-family:tahoma, arial, simsun, sans-serif; color:#484848;}
 a:hover{text-decoration:underline;}
 sup{vertical-align:text-top;}
@@ -295,7 +295,7 @@ b{font-weight:normal; display:inline-block; margin:0 8px; color:#f27f02;}
 	height:20px;
 	overflow:hidden;
 	color:#999;
-	font-size:8px;
+	font-size:10px;
 }
 .Validform_right{
 	color:#71b83d;

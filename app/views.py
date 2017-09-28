@@ -40,8 +40,9 @@ def kfGroup():
     return render_template('kefu_group.html')
 
 @app.route('/kf/add')
-def kfEdit():
+def kfAdd():
     return render_template('kefu_add.html')
+
 
 @app.route('/user')
 def toUser():

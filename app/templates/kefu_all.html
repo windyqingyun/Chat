@@ -1,192 +1,144 @@
 {% extends 'kf.html' %}
 {% block content %}
-    <div class="row">
-        <label>
+    <div style="padding: 1px;">
+        <div class="row">
+            <label>
 
-            <select name="role" class="form-control input-sm" aria-controls="example1">
-                <option value="all">所有角色</option>
-                <option value="manager">管理员</option>
-            </select>
-        </label>
-        <div class="pull-right">
-            <div id="kefu-search" style="margin-right: 10px" class="pull-left">
-                    <input type="search" class="form-control input-sm" style="margin-right: 10px" placeholder="输入客服姓名/昵称/帐号/手机号" maxlength="100">
-
-            </div>
+                <select name="role" class="form-control input-sm" aria-controls="example1">
+                    <option value="all">所有角色</option>
+                    <option value="manager">管理员</option>
+                </select>
+            </label>
             <div class="pull-right">
-            <a type="button" href='{{ url_for('kfEdit') }}' class="btn btn-primary btn-sm">新增客服
-            </a>
+                <div id="kefu-search" style="margin-right: 10px" class="pull-left">
+                        <input type="search" class="form-control input-sm" style="margin-right: 10px" placeholder="输入客服姓名/昵称/帐号/手机号" maxlength="100">
+
+                </div>
+                <div class="pull-right">
+                <a type="button" href='{{ url_for('kfAdd') }}' class="btn btn-primary btn-sm">新增客服
+                </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <table id="generatedTable" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>昵称</th>
-                        <th>姓名</th>
-                        <th>账号</th>
-                        <th>手机号</th>
-                        <th>角色</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="cloneTr">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                     </tr>
-                 </tbody>
-        </table>
-    </div>
-    <div class="row">
-    <nav class="text-right" aria-label="Page navigation">
+        <div class="row">
+            <table id="generatedTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>昵称</th>
+                            <th>姓名</th>
+                            <th>账号</th>
+                            <th>手机号</th>
+                            <th>角色</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataShow">
 
-        <ul class="pagination">
-            <li id="page-info" class="page-info">共1页</li>
-            <li>
-              <a onclick="m_prePage()" aria-label="Previous">
-                <span>&laquo;</span>
-              </a>
-            </li>
-            <li class="active"><a id="page_num" href="#">1</a></li>
-            <li>
-              <a onclick="m_nextPage()" aria-label="Next">
-                <span>&raquo;</span>
-              </a>
-            </li>
-        </ul>
-    </nav>
+                     </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <nav class="text-right" aria-label="Page navigation">
+
+                <ul class="pagination">
+                    <li id="page-info" class="page-info">共<em>1</em>页</li>
+                    <li>
+                      <a onclick="m_prePage()" aria-label="Previous">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                    </li>
+                    <li class="active"><a id="page_num" href="#">1</a></li>
+                    <li>
+                      <a onclick="m_nextPage()" aria-label="Next">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
+
 {% endblock %}
 {% block kefu_js %}
 {#    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>#}
 {#    <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>#}
     <script type="text/javascript">
-            $.ajax({
+
+    function toPage(page) {
+        var url = '../static/data/test'+page+'.json'
+        $.ajax({
                 type: "GET",
-                url: '../static/data/test1.json',
+                url: url,
                 dataType: 'json',
                 cache: false,
                 //       data:"datas="+datas;//要发送的数据
                 success: createTable
             });
+    }
 
+    toPage(1);
 
-            function createTable(objects) {
+    function createTable(objects) {
 
-                //1,获取上面id为cloneTr的tr元素
-                {#  初始化表格      #}
-                var pages = objects['pages'];
-                document.getElementById('page-info').innerHTML = '共' + pages + '页';
-                document.getElementById("generatedTable").innerHTML = '<thead>\
-                    <tr>\
-                        <th>昵称</th>\
-                        <th>姓名</th>\
-                        <th>账号</th>\
-                        <th>手机号</th>\
-                        <th>角色</th>\
-                        <th>操作</th>\
-                    </tr>\
-                </thead>\
-                <tbody>\
-                    <tr id="cloneTr">\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                        <td></td>\
-                     </tr>\
-                 </tbody>';
+        var pages = objects['pages'];
+        $('#page-info').html('共<em>' + pages + '</em>页');
+        $("#dataShow").empty();
+        var _html = ""
 
+        if(objects['items'].length === 0){
+            _html = "<td>暂无相关数据</td>"
+        }else{
 
-                $("#cloneTr").show();
-                var tr = $("#cloneTr");
+            $.each(objects['items'], function (index, item) {
+                _html +=  "<tr> \
+                              <td>"+item.nickname+"</td>\
+                              <td>"+item.name+"</td>    \
+                              <td>"+item.username+"</td>\
+                              <td>"+item.phone+"</td>   \
+                              <td>"+item.role+"</td>    \
+                              <td class='table-tool'><a href='{{ url_for('kfAdd') }}'>\
+                              <i class='fa fa-edit'></i></a><a onclick='remove()'><i class='fa fa-trash'></i></a></td>\
+                           </tr>";
+            });
+        }
+          $("#dataShow").append(_html)
+    }
 
-
-                $.each(objects, function (index, item) {
-
-                    //克隆tr，每次遍历都可以产生新的tr
-
-                    var clonedTr = tr.clone();
-                    var _index = index;
-                    //循环遍历cloneTr的每一个td元素，并赋值
-                    $.each(item, function (i, d) {
-
-                        var clonedTr = tr.clone();
-                        clonedTr.children("td").each(function (inner_index) {
-
-                            //根据索引为每一个td赋值
-                            switch (inner_index) {
-                                case(0):
-
-                                    $(this).html(d["nickname"]);
-                                    break;
-                                case(1):
-                                    $(this).html(d["name"]);
-                                    break;
-                                case(2):
-                                    $(this).html(d["username"]);
-                                    break;
-                                case(3):
-                                    $(this).html(d["phone"]);
-                                    break;
-                                case(4):
-                                    $(this).html(d["role"]);
-                                    break;
-                                case(5):
-                                    $(this).html('<a><li class="fa fa-edit y-icon"></li></a><a><li class="fa fa-trash y-icon"></li></a>')
-
-
-                            }//end switch
-                        });
-                        clonedTr.insertAfter(tr);
-                    });//end children.each
-                    //把克隆好的tr追加原来的tr后面
-
-                });//end $each
-                $("#cloneTr").hide();//隐藏id=clone的tr，因为该tr中的td没有数据，不隐藏起来会在生成的table第一行显示一个空行
-                $("#generatedTable").show();
+    function remove() {
+         Confirm({
+            msg: "您确定要删除吗？",
+            onOk: function(){
+                 alert('确定删除')
+            },
+            onCancel: function(){
+                 $.Deferred().reject();
             }
-    //end success
-    </script>
-    <script>
+         });
+    }
+
+
+
     function m_nextPage(){
-        console.log('nextpage');
-        var page_num = parseInt(document.getElementById('page_num').innerHTML)+1;
-        document.getElementById('page_num').innerHTML = page_num;
-        var filename = 'test'+page_num+'.json';
-        $.ajax({
-            type:"GET",
-            url:'../static/data/'+filename,
-            dataType: 'json',
-            cache: false,
-     //       data:"datas="+datas;//要发送的数据
-            success: createTable
-        });
+        var allPage = $('#page-info em').text();
+        var page_num = parseInt($('#page_num').text())+1;
+        if(page_num > allPage ){
+            return;
+        }
+        $('#page_num').text(page_num)
+        toPage(page_num)
+
     }
 
     function m_prePage(){
-        console.log('prepage');
-        var page_num = parseInt(document.getElementById('page_num').innerHTML)-1;
-        if (page_num < 1){ page_num = 1;}
-
-        document.getElementById('page_num').innerHTML = page_num;
-        var filename = 'test'+page_num+'.json';
-        $.ajax({
-            type:"GET",
-            url:'../static/data/'+filename,
-            dataType: 'json',
-            cache: false,
-     //       data:"datas="+datas;//要发送的数据
-            success: createTable
-        });
+        var page_num = parseInt($('#page_num').text()) -1;
+        if (page_num < 1){
+            return ;
+        }
+        $('#page_num').text(page_num)
+        toPage(page_num)
     }
+
     $('li').removeClass('active');
     $('#all').addClass('active');
 
